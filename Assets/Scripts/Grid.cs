@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatientManager : MonoBehaviour
+public class Grid : MonoBehaviour
 {
-
-
-
     // Start is called before the first frame update
     void Start()
     {
