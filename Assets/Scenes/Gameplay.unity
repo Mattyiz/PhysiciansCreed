@@ -1846,8 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6162f2c5e597c64eb1c28a6abd1fea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patients:
-  - {fileID: 1496984851}
+  patients: []
   clickedPatient: {fileID: 0}
 --- !u!1 &2045206863
 GameObject:

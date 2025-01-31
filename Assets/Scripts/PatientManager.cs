@@ -11,6 +11,12 @@ public class PatientManager : MonoBehaviour
     void Start()
     {
         clickedPatient = null;
+
+        foreach(Transform child in transform)
+        {
+            patients.Add(child.gameObject);
+        }
+
     }
 
     // Update is called once per frame
