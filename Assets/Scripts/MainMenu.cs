@@ -5,18 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
-    [SerializeField] private string nextScene;
-
-    // Start is called before the first frame update
-    void Start()
+    public void Play()
     {
-        SceneManager.LoadScene(nextScene);
+        SceneManager.LoadScene("Gameplay");
+    }
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Quit()
     {
-        
+        Application.Quit();
     }
 }
