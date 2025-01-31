@@ -28,6 +28,8 @@ public class GridSpace : MonoBehaviour
         {
             heldPatient = pManager.clickedPatient;
             pManager.clickedPatient = null;
+            heldPatient.GetComponent<Patient>().clicked = false;
+            heldPatient.GetComponent<BoxCollider2D>().enabled = true;
 
             heldPatient.transform.position = this.transform.position;
         }
