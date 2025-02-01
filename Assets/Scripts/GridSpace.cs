@@ -6,6 +6,9 @@ public class GridSpace : MonoBehaviour
 {
     public GameObject heldPatient;
     [SerializeField] private PatientManager pManager;
+    public GameGrid gridManager;
+    public int x;
+    public int y;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +27,65 @@ public class GridSpace : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(pManager.clickedPatient != null)
+        if(pManager.clickedPatient != null && heldPatient == null)
         {
-            heldPatient = pManager.clickedPatient;
+
+            Patient patient = pManager.clickedPatient.GetComponent<Patient>();
+            if (!CheckPatientSize(patient))
+            {
+                return;
+            }
+
+            for (int i = 0; i < patient.sizeY; i++)
+            {
+                for (int j = 0; j < patient.sizeX; j++)
+                {
+
+                    gridManager.grid[y-i,x-j].GetComponent<GridSpace>().heldPatient = pManager.clickedPatient;
+                    patient.holder.Add(gridManager.grid[y - i, x - j].GetComponent<GridSpace>());
+                }
+            }
+
             pManager.clickedPatient = null;
-            heldPatient.GetComponent<Patient>().clicked = false;
+            patient.clicked = false;
             heldPatient.GetComponent<BoxCollider2D>().enabled = true;
 
-            heldPatient.transform.position = this.transform.position;
+            Vector3 newPosition = new Vector3(0, 0, 0);
+            newPosition.x = (this.transform.position.x + gridManager.grid[y-(patient.sizeY - 1), x-(patient.sizeX - 1)].transform.position.x)/ 2;
+            newPosition.y = (this.transform.position.y + gridManager.grid[y-(patient.sizeY - 1), x-(patient.sizeX - 1)].transform.position.y)/ 2;
+            heldPatient.transform.position = newPosition;
+
         }
+    }
+
+    private bool CheckPatientSize(Patient patient)
+    {
+        if(patient.sizeX == 1 && patient.sizeY == 1)
+        {
+            return true;
+        }
+
+        if(y - (patient.sizeY-1) < 0)
+        {
+            return false;
+        }
+
+        if (x - (patient.sizeX - 1) < 0)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < patient.sizeY; i++)
+        {
+            for (int j = 0; j < patient.sizeX; j++)
+            {
+                if (gridManager.grid[y-i, x - j].GetComponent<GridSpace>().heldPatient != null)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

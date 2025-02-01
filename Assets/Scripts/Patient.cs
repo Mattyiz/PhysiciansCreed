@@ -9,10 +9,13 @@ public class Patient : MonoBehaviour
     public int sizeX;
     public int sizeY;
     public bool clicked;
+    public List<GridSpace> holder;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        holder = new List<GridSpace>();
 
         clicked = false;
 
@@ -31,6 +34,7 @@ public class Patient : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
+            mousePos.y = mousePos.y - ((sizeY-1) * 2);
             transform.position = mousePos;
         }
 
@@ -39,8 +43,19 @@ public class Patient : MonoBehaviour
 
     void OnMouseDown()
     {
+        if(manager.clickedPatient != null)
+        {
+            return;
+        }
+
         manager.clickedPatient = this.gameObject;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         clicked = true;
+
+        while(holder.Count > 0)
+        {
+            holder[0].heldPatient = null;
+            holder.RemoveAt(0);
+        }
     }
 }

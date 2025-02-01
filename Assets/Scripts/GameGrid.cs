@@ -7,7 +7,7 @@ public class GameGrid : MonoBehaviour
 
     [SerializeField] int gridX = 3;
     [SerializeField] int gridY = 3;
-    private GameObject[,] grid;
+    public GameObject[,] grid; //grid is [y,x] sorry but we've come to far to change it
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,9 @@ public class GameGrid : MonoBehaviour
             for (int j = 0; j < transform.GetChild(i).childCount; j++)
             {
                 grid[i, j] = transform.GetChild(i).GetChild(j).gameObject;
+                grid[i, j].GetComponent<GridSpace>().gridManager = this;
+                grid[i, j].GetComponent<GridSpace>().x = j;
+                grid[i, j].GetComponent<GridSpace>().y = i;
             }
         }
     }
