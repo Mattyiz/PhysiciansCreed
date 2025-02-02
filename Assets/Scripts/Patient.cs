@@ -34,7 +34,8 @@ public class Patient : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             mousePos.z = 0;
-            mousePos.y = mousePos.y - ((sizeY-1) * 2);
+            mousePos.y = mousePos.y - ((sizeY-1));
+            mousePos.x = mousePos.x - ((sizeX-1));
             transform.position = mousePos;
         }
 
@@ -54,6 +55,7 @@ public class Patient : MonoBehaviour
 
         while(holder.Count > 0)
         {
+            holder[0].GetComponent<CircleCollider2D>().enabled = true;
             holder[0].heldPatient = null;
             holder.RemoveAt(0);
         }
