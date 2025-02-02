@@ -31,22 +31,25 @@ public class PatientManager : MonoBehaviour
         for(int i = 0; i < patientPrefabs.Count; i++)
         {
             //WARNING EEPY CODE AHEAD
-            if(i < 3)
+            switch (i)
             {
-                patients.Add(Instantiate(patientPrefabs[i], new Vector3(-6, (i-1) * 2.5f, 0), transform.rotation));
-            }
-            else
-            {
-                if(i%2 == 0)
-                {
-                    patients.Add(Instantiate(patientPrefabs[i], new Vector3(6, 2.5f, 0), transform.rotation));
-
-                }
-                else
-                {
-                    patients.Add(Instantiate(patientPrefabs[i], new Vector3(6, -2.5f, 0), transform.rotation));
-
-                }
+                case 0:
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-7.5f, 4, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-5.5f, 4, 0), transform.rotation));
+                    break;
+                case 1:
+                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(-6.5f, 2, 0), transform.rotation));
+                    break;
+                case 2:
+                    patients.Add(Instantiate(patientPrefabs[4], new Vector3(-6.5f, -2, 0), transform.rotation));
+                    break;
+                case 3:
+                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(6, 2, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(7.5f, 2, 0), transform.rotation));
+                    break;
+                case 4:
+                    patients.Add(Instantiate(patientPrefabs[3], new Vector3(6.5f, -2, 0), transform.rotation));
+                    break;
             }
         }
     }
