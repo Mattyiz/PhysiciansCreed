@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Patient : MonoBehaviour
+public class Patient : MonoBehaviour, IPointerClickHandler
 {
 
     [SerializeField] private PatientManager manager;
+
+    [Header("Grid Stuff")]
     public int sizeX;
     public int sizeY;
     public bool clicked;
     public List<GridSpace> holder;
+    public bool scheduled;
+
+    [Header("Patient Records")]
+    public int money;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +25,9 @@ public class Patient : MonoBehaviour
         holder = new List<GridSpace>();
 
         clicked = false;
+        scheduled = false;
 
-        if(manager == null)
+        if (manager == null)
         {
             manager = GameObject.Find("PatientManager").GetComponent<PatientManager>();
         }
@@ -42,9 +50,9 @@ public class Patient : MonoBehaviour
         
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if(manager.clickedPatient != null)
+        if (manager.clickedPatient != null)
         {
             return;
         }
@@ -53,11 +61,19 @@ public class Patient : MonoBehaviour
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         clicked = true;
 
-        while(holder.Count > 0)
+        scheduled = false;
+        ClearHolder();
+        
+    }
+
+    public void ClearHolder()
+    {
+        while (holder.Count > 0)
         {
             holder[0].GetComponent<CircleCollider2D>().enabled = true;
             holder[0].heldPatient = null;
             holder.RemoveAt(0);
         }
     }
+
 }

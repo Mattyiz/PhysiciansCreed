@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class GridSpace : MonoBehaviour
+public class GridSpace : MonoBehaviour, IPointerClickHandler
 {
     public GameObject heldPatient;
     [SerializeField] private PatientManager pManager;
@@ -25,9 +26,9 @@ public class GridSpace : MonoBehaviour
         
     }
 
-    void OnMouseDown()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if(pManager.clickedPatient != null && heldPatient == null)
+        if (pManager.clickedPatient != null && heldPatient == null)
         {
             Patient patient = pManager.clickedPatient.GetComponent<Patient>();
             if (!CheckPatientSize(patient))
@@ -40,7 +41,7 @@ public class GridSpace : MonoBehaviour
                 for (int j = 0; j < patient.sizeX; j++)
                 {
 
-                    gridManager.grid[y-i,x-j].GetComponent<GridSpace>().heldPatient = pManager.clickedPatient;
+                    gridManager.grid[y - i, x - j].GetComponent<GridSpace>().heldPatient = pManager.clickedPatient;
                     patient.holder.Add(gridManager.grid[y - i, x - j].GetComponent<GridSpace>());
                     gridManager.grid[y - i, x - j].GetComponent<CircleCollider2D>().enabled = false;
                 }
@@ -48,11 +49,12 @@ public class GridSpace : MonoBehaviour
 
             pManager.clickedPatient = null;
             patient.clicked = false;
+            patient.scheduled = true;
 
             Vector3 newPosition = new Vector3(0, 0, 0);
             heldPatient.GetComponent<BoxCollider2D>().enabled = true;
-            newPosition.x = (this.transform.position.x + gridManager.grid[y-(patient.sizeY - 1), x-(patient.sizeX - 1)].transform.position.x)/ 2;
-            newPosition.y = (this.transform.position.y + gridManager.grid[y-(patient.sizeY - 1), x-(patient.sizeX - 1)].transform.position.y)/ 2;
+            newPosition.x = (this.transform.position.x + gridManager.grid[y - (patient.sizeY - 1), x - (patient.sizeX - 1)].transform.position.x) / 2;
+            newPosition.y = (this.transform.position.y + gridManager.grid[y - (patient.sizeY - 1), x - (patient.sizeX - 1)].transform.position.y) / 2;
             heldPatient.transform.position = newPosition;
 
         }

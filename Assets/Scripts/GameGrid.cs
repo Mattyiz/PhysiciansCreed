@@ -31,10 +31,24 @@ public class GameGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* Test that it populates ok
-        foreach(GameObject gameObject in grid)
+    }
+
+    public int ChargePatients()
+    {
+        int money = 0;
+
+        for (int i = 0; i < transform.childCount; i++)
         {
-            Debug.Log(gameObject);
-        }*/
+            for (int j = 0; j < transform.GetChild(i).childCount; j++)
+            {
+                if(grid[i, j].GetComponent<GridSpace>().heldPatient != null)
+                {
+                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().money;
+                    grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().ClearHolder();
+                }
+            }
+        }
+
+        return money;
     }
 }

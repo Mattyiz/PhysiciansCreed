@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatientManager : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> patientPrefabs;
     [SerializeField] private List<GameObject> patients;
     public GameObject clickedPatient;
 
@@ -23,6 +24,45 @@ public class PatientManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SpawnPatients()
+    {
+        for(int i = 0; i < patientPrefabs.Count; i++)
+        {
+            //WARNING EEPY CODE AHEAD
+            if(i < 3)
+            {
+                patients.Add(Instantiate(patientPrefabs[i], new Vector3(-6, (i-1) * 2.5f, 0), transform.rotation));
+            }
+            else
+            {
+                if(i%2 == 0)
+                {
+                    patients.Add(Instantiate(patientPrefabs[i], new Vector3(6, 2.5f, 0), transform.rotation));
+
+                }
+                else
+                {
+                    patients.Add(Instantiate(patientPrefabs[i], new Vector3(6, -2.5f, 0), transform.rotation));
+
+                }
+            }
+        }
+    }
+
+    public void TreatPatients()
+    {
+        for(int i = 0; i < patients.Count; i++)
+        {
+            if(patients[i].GetComponent<Patient>().scheduled)
+            {
+                Destroy(patients[i]);
+                patients.RemoveAt(i);
+                i--;
+
+            }
+        }
     }
 
 
