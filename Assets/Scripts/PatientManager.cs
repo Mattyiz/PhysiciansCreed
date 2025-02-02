@@ -34,11 +34,11 @@ public class PatientManager : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-7.5f, 4, 0), transform.rotation));
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-5.5f, 4, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-7.5f, 3, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-5.5f, 3, 0), transform.rotation));
                     break;
                 case 1:
-                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(-6.5f, 2, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(-6.5f, 1.5f, 0), transform.rotation));
                     break;
                 case 2:
                     patients.Add(Instantiate(patientPrefabs[4], new Vector3(-6.5f, -2, 0), transform.rotation));

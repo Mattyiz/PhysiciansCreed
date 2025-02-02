@@ -61,13 +61,20 @@ public class Patient : MonoBehaviour, IPointerClickHandler
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         clicked = true;
 
-        scheduled = false;
-        ClearHolder();
+        if(scheduled)
+        {
+            scheduled = false;
+            ClearHolder();
+        }
+        
         
     }
 
     public void ClearHolder()
     {
+
+        holder[0].gridManager.UpdateUI(-1 * money);
+
         while (holder.Count > 0)
         {
             holder[0].GetComponent<CircleCollider2D>().enabled = true;

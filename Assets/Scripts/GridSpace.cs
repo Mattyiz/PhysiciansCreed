@@ -57,6 +57,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
             newPosition.y = (this.transform.position.y + gridManager.grid[y - (patient.sizeY - 1), x - (patient.sizeX - 1)].transform.position.y) / 2;
             heldPatient.transform.position = newPosition;
 
+            gridManager.UpdateUI(patient.money);
         }
     }
 

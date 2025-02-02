@@ -104,7 +104,7 @@ MonoBehaviour:
   clicked: 0
   holder: []
   scheduled: 0
-  money: 2
+  money: 20
 --- !u!61 &64809616391495960
 BoxCollider2D:
   m_ObjectHideFlags: 0

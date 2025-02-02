@@ -5,9 +5,12 @@ using UnityEngine;
 public class GameGrid : MonoBehaviour
 {
 
-    [SerializeField] int gridX = 3;
-    [SerializeField] int gridY = 3;
+    [SerializeField] private int gridX;
+    [SerializeField] private int gridY;
     public GameObject[,] grid; //grid is [y,x] sorry but we've come to far to change it
+    public GameObject moneyText;
+    public int carryOverMoney;
+    public int newRoundMoney;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,20 @@ public class GameGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public void UpdateUI(int newMoney)
+    {
+        if(newMoney <= -100)
+        {
+            newMoney = 0;
+            newRoundMoney = 0;
+        }
+
+        newRoundMoney += newMoney;
+        moneyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Money: " + carryOverMoney + " (" + newRoundMoney + ")";
+
+
     }
 
     public int ChargePatients()
