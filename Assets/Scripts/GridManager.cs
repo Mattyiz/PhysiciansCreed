@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameGrid : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
 
     [SerializeField] private int gridX;
@@ -36,9 +36,14 @@ public class GameGrid : MonoBehaviour
     {
     }
 
+    /// <summary>
+    /// Updates the money text box
+    /// </summary>
+    /// <param name="newMoney">Change to the money</param>
     public void UpdateUI(int newMoney)
     {
-        if(newMoney <= -100)
+        //Resets the money
+        if(newMoney <= -1000)
         {
             newMoney = 0;
             newRoundMoney = 0;
@@ -47,9 +52,12 @@ public class GameGrid : MonoBehaviour
         newRoundMoney += newMoney;
         moneyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Money: " + carryOverMoney + " (" + newRoundMoney + ")";
 
-
     }
 
+    /// <summary>
+    /// Clears the grid and returns the total money of the patients treated
+    /// </summary>
+    /// <returns>Total money of all the patients in the grid</returns>
     public int ChargePatients()
     {
         int money = 0;

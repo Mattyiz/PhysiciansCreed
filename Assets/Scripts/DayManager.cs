@@ -30,6 +30,9 @@ public class DayManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Starts the day by getting quota, spawning the patients, and enabling the grid
+    /// </summary>
     public void StartDay()
     {
         if(quota <= 0)
@@ -50,11 +53,15 @@ public class DayManager : MonoBehaviour
         endButton.SetActive(true);
     }
 
+    /// <summary>
+    /// Ends the day by getting the money made and comparing it against the quota
+    /// </summary>
     public void EndDay()
     {
 
-        currentMoney += grid.GetComponent<GameGrid>().ChargePatients();
+        currentMoney += grid.GetComponent<GridManager>().ChargePatients();
 
+        //Game over if didn't meet quota
         if(quota <= currentMoney)
         {
             currentMoney -= quota;
@@ -64,15 +71,20 @@ public class DayManager : MonoBehaviour
             GameOver();
         }
 
-        grid.GetComponent<GameGrid>().carryOverMoney = currentMoney;
-        grid.GetComponent<GameGrid>().UpdateUI(-1000);
+        //Updates money UI
+        grid.GetComponent<GridManager>().carryOverMoney = currentMoney;
+        grid.GetComponent<GridManager>().UpdateUI(-1000);
 
+        //Treats patients, disables grid
         patientManager.GetComponent<PatientManager>().TreatPatients();
         grid.SetActive(false);
         startButton.SetActive(true);
         endButton.SetActive(false);
     }
 
+    /// <summary>
+    /// Goes to game over scene
+    /// </summary>
     private void GameOver()
     {
         SceneManager.LoadScene("Game Over");

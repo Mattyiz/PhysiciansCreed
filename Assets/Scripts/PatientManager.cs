@@ -26,6 +26,9 @@ public class PatientManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Spawns the patients
+    /// </summary>
     public void SpawnPatients()
     {
         for(int i = 0; i < patientPrefabs.Count; i++)
@@ -54,6 +57,9 @@ public class PatientManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Goes through the patients, if they're scheduled, destroy them
+    /// </summary>
     public void TreatPatients()
     {
         for(int i = 0; i < patients.Count; i++)

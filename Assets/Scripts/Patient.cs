@@ -47,34 +47,39 @@ public class Patient : MonoBehaviour, IPointerClickHandler
             transform.position = mousePos;
         }
 
-        
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        //Return if already holding a patient
         if (manager.clickedPatient != null)
         {
             return;
         }
 
+        //Registers this as being held and clicked, and disables the collider
         manager.clickedPatient = this.gameObject;
         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         clicked = true;
 
+        //If the patient is scheduled, remove them from the schedule
         if(scheduled)
         {
             scheduled = false;
             ClearHolder();
         }
         
-        
     }
 
+    /// <summary>
+    /// Goes through all grid spaces holding this and removes this from them
+    /// </summary>
     public void ClearHolder()
     {
-
+        //Updates the UI
         holder[0].gridManager.UpdateUI(-1 * money);
 
+        //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)
         {
             holder[0].GetComponent<CircleCollider2D>().enabled = true;
