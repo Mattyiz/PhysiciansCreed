@@ -74,5 +74,9 @@ public class PatientManager : MonoBehaviour
         }
     }
 
+    void OnRotate()
+    {
+        //Debug.Log("HERE");
+    }
 
 }
