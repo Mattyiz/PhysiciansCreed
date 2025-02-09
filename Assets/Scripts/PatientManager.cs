@@ -76,7 +76,13 @@ public class PatientManager : MonoBehaviour
 
     void OnRotate()
     {
-        //Debug.Log("HERE");
+        if(clickedPatient == null)
+        {
+            return;
+        }
+
+        //Debug.Log(clickedPatient);
+        clickedPatient.GetComponent<Patient>().Rotate();
     }
 
 }

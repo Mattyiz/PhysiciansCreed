@@ -88,4 +88,13 @@ public class Patient : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    public void Rotate()
+    {
+        int temp = sizeX;
+        sizeX = sizeY;
+        sizeY = temp;
+
+        transform.Rotate(0, 0, 90);
+    }
+
 }
