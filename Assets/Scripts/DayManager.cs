@@ -15,6 +15,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject patientManager;
     [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject waitingRoom;
     [SerializeField] private GameObject endButton;
     [SerializeField] private GameObject quotaText;
 
@@ -48,6 +49,7 @@ public class DayManager : MonoBehaviour
 
         patientManager.GetComponent<PatientManager>().SpawnPatients();
         grid.SetActive(true);
+        //waitingRoom.SetActive(true);
 
         startButton.SetActive(false);
         endButton.SetActive(true);

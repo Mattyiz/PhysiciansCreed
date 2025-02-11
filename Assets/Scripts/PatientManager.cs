@@ -5,7 +5,7 @@ using UnityEngine;
 public class PatientManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> patientPrefabs;
-    [SerializeField] private List<GameObject> patients;
+    [SerializeField] public List<GameObject> patients;
     public GameObject clickedPatient;
 
     // Start is called before the first frame update
