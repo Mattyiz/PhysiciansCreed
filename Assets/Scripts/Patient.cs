@@ -60,6 +60,7 @@ public class Patient : MonoBehaviour
 
         //Registers this as being held and clicked, and disables the collider
         manager.clickedPatient = this.gameObject;
+        manager.ChangeCursor(false);
         ToggleHitboxes(false);
         clicked = true;
 
@@ -93,7 +94,10 @@ public class Patient : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.gameObject.GetComponent<BoxCollider2D>().enabled = able;
+            if(child.gameObject.GetComponent<BoxCollider2D>() != null)
+            {
+                child.gameObject.GetComponent<BoxCollider2D>().enabled = able;
+            }
         }
     }
 

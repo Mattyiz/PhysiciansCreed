@@ -8,6 +8,9 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private List<GameObject> patients;
     public GameObject clickedPatient;
 
+    [SerializeField] private Texture2D open;
+    [SerializeField] private Texture2D close;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,21 +40,18 @@ public class PatientManager : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-7.5f, 3, 0), transform.rotation));
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(-5.5f, 3, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(2.5f, 2.7f, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(4.2f, 2.7f, 0), transform.rotation));
                     break;
                 case 1:
-                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(-6.5f, 1.5f, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(6.7f, -1.5f, 0), transform.rotation));
                     break;
                 case 2:
-                    patients.Add(Instantiate(patientPrefabs[4], new Vector3(-6.5f, -2, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[3], new Vector3(3.3f, -1.7f, 0), transform.rotation));
                     break;
                 case 3:
-                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(6, 2, 0), transform.rotation));
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(7.5f, 2, 0), transform.rotation));
-                    break;
-                case 4:
-                    patients.Add(Instantiate(patientPrefabs[3], new Vector3(6.5f, -2, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(7.4f, 2.7f, 0), transform.rotation));
+                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(5.8f, 2.7f, 0), transform.rotation));
                     break;
             }
         }
@@ -83,6 +83,17 @@ public class PatientManager : MonoBehaviour
 
         //Debug.Log(clickedPatient);
         clickedPatient.GetComponent<Patient>().Rotate();
+    }
+
+    public void ChangeCursor(bool isOpen)
+    {
+        if (isOpen)
+        {
+            Cursor.SetCursor(open, new Vector2(0, 0), CursorMode.Auto);
+            return;
+        }
+
+        Cursor.SetCursor(close, new Vector2(0, 0), CursorMode.Auto);
     }
 
 }

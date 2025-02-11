@@ -54,10 +54,9 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
                 }
             }
 
-            Debug.Log("HERE");
-
             //Unclicks the patient and schedules them
             pManager.clickedPatient = null;
+            pManager.ChangeCursor(true);
             patient.clicked = false;
             patient.scheduled = true;
 
