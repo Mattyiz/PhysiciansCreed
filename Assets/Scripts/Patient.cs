@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Patient : MonoBehaviour, IPointerClickHandler
+public class Patient : MonoBehaviour
 {
 
     [SerializeField] private PatientManager manager;
@@ -11,6 +11,7 @@ public class Patient : MonoBehaviour, IPointerClickHandler
     [Header("Grid Stuff")]
     public int sizeX;
     public int sizeY;
+    public List<Vector2> nullSquares; //nullSquares are the spots of the rectangle that aren't in the shape (Think of the tetris shapes)
     public bool clicked;
     public List<GridSpace> holder;
     public bool scheduled;
@@ -49,7 +50,7 @@ public class Patient : MonoBehaviour, IPointerClickHandler
 
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Clicked(PointerEventData eventData)
     {
         //Return if already holding a patient
         if (manager.clickedPatient != null)
@@ -59,7 +60,7 @@ public class Patient : MonoBehaviour, IPointerClickHandler
 
         //Registers this as being held and clicked, and disables the collider
         manager.clickedPatient = this.gameObject;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        ToggleHitboxes(false);
         clicked = true;
 
         //If the patient is scheduled, remove them from the schedule
@@ -82,19 +83,37 @@ public class Patient : MonoBehaviour, IPointerClickHandler
         //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)
         {
-            holder[0].GetComponent<CircleCollider2D>().enabled = true;
+            holder[0].gameObject.GetComponent<CircleCollider2D>().enabled = true;
             holder[0].heldPatient = null;
             holder.RemoveAt(0);
         }
     }
 
+    public void ToggleHitboxes(bool able)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.GetComponent<BoxCollider2D>().enabled = able;
+        }
+    }
+
     public void Rotate()
     {
+
+        for(int i = 0; i < nullSquares.Count; i++)
+        {
+
+            {
+                Vector2 newNull = new Vector2(nullSquares[i].y, sizeX - nullSquares[i].x - 1);
+                nullSquares[i] = newNull;
+            }
+        }
+
+
         int temp = sizeX;
         sizeX = sizeY;
         sizeY = temp;
-
-        transform.Rotate(0, 0, 90);
+        transform.Rotate(0, 0, -90);
     }
 
 }
