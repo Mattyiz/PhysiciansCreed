@@ -44,21 +44,25 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
             {
                 for (int j = 0; j < patient.sizeX; j++)
                 {
-
-                    gridManager.grid[y - i, x - j].GetComponent<GridSpace>().heldPatient = pManager.clickedPatient;
-                    patient.holder.Add(gridManager.grid[y - i, x - j].GetComponent<GridSpace>());
-                    gridManager.grid[y - i, x - j].GetComponent<CircleCollider2D>().enabled = false;
+                    Vector2 temp = new Vector2(j, i);
+                    if (!patient.nullSquares.Contains(temp))
+                    {
+                        gridManager.grid[y - i, x - j].GetComponent<GridSpace>().heldPatient = pManager.clickedPatient;
+                        patient.holder.Add(gridManager.grid[y - i, x - j].GetComponent<GridSpace>());
+                        gridManager.grid[y - i, x - j].GetComponent<CircleCollider2D>().enabled = false;
+                    }
                 }
             }
 
             //Unclicks the patient and schedules them
             pManager.clickedPatient = null;
+            pManager.ChangeCursor(true);
             patient.clicked = false;
             patient.scheduled = true;
 
             //Places the patient where needed
             Vector3 newPosition = new Vector3(0, 0, 0);
-            heldPatient.GetComponent<BoxCollider2D>().enabled = true;
+            heldPatient.GetComponent<Patient>().ToggleHitboxes(true);
             newPosition.x = (this.transform.position.x + gridManager.grid[y - (patient.sizeY - 1), x - (patient.sizeX - 1)].transform.position.x) / 2;
             newPosition.y = (this.transform.position.y + gridManager.grid[y - (patient.sizeY - 1), x - (patient.sizeX - 1)].transform.position.y) / 2;
             heldPatient.transform.position = newPosition;
@@ -96,10 +100,16 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
         {
             for (int j = 0; j < patient.sizeX; j++)
             {
-                if (gridManager.grid[y-i, x - j].GetComponent<GridSpace>().heldPatient != null)
+                //If there is a null square, ignore the square
+                Vector2 temp = new Vector2(j, i);
+                if (!patient.nullSquares.Contains(temp))
                 {
-                    return false;
+                    if (gridManager.grid[y - i, x - j].GetComponent<GridSpace>().heldPatient != null)
+                    {
+                        return false;
+                    }
                 }
+                
             }
         }
 
