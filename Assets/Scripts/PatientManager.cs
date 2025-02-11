@@ -10,6 +10,7 @@ public class PatientManager : MonoBehaviour
 
     [SerializeField] private Texture2D open;
     [SerializeField] private Texture2D close;
+    [SerializeField] private GameObject WaitingRoom;
 
     // Start is called before the first frame update
     void Start()
@@ -90,10 +91,12 @@ public class PatientManager : MonoBehaviour
         if (isOpen)
         {
             Cursor.SetCursor(open, new Vector2(0, 0), CursorMode.Auto);
+            WaitingRoom.GetComponent<BoxCollider2D>().enabled = false;
             return;
         }
 
         Cursor.SetCursor(close, new Vector2(0, 0), CursorMode.Auto);
+        WaitingRoom.GetComponent<BoxCollider2D>().enabled = true;
     }
 
 }

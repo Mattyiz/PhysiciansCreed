@@ -49,7 +49,7 @@ public class DayManager : MonoBehaviour
 
         patientManager.GetComponent<PatientManager>().SpawnPatients();
         grid.SetActive(true);
-        //waitingRoom.SetActive(true);
+        waitingRoom.SetActive(true);
 
         startButton.SetActive(false);
         endButton.SetActive(true);
@@ -80,6 +80,7 @@ public class DayManager : MonoBehaviour
         //Treats patients, disables grid
         patientManager.GetComponent<PatientManager>().TreatPatients();
         grid.SetActive(false);
+        waitingRoom.SetActive(false);
         startButton.SetActive(true);
         endButton.SetActive(false);
     }
