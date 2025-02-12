@@ -13,7 +13,6 @@ public class CVSReader : MonoBehaviour
         public string name;
         public string sex;
         public string age;
-        public string bio;
         public string familialStatus;
         public string condition;
 
@@ -35,18 +34,17 @@ public class CVSReader : MonoBehaviour
     void ReadCSV()
     {
         string[] data = textAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
-        int tabelSize = data.Length / 6 - 1;
+        int tabelSize = data.Length / 5 - 1;
         thePatientList.patient = new Patient[tabelSize];
 
         for (int index  = 0; index < tabelSize; index++)
         {
             thePatientList.patient[index] = new Patient();
-            thePatientList.patient[index].name = data[6 * (index + 1)];
-            thePatientList.patient[index].sex = data[6 * (index + 1) + 1];
-            thePatientList.patient[index].age = data[6 * (index + 1) + 2];
-            thePatientList.patient[index].bio = data[6 *  (index + 1) + 3];
-            thePatientList.patient[index].familialStatus = data[6 * (index + 1) + 4];
-            thePatientList.patient[index].condition = data[6 * (index + 1) + 5];
+            thePatientList.patient[index].name = data[5 * (index + 1)];
+            thePatientList.patient[index].sex = data[5 * (index + 1) + 1];
+            thePatientList.patient[index].age = data[5 * (index + 1) + 2];
+            thePatientList.patient[index].familialStatus = data[5 * (index + 1) + 3];
+            thePatientList.patient[index].condition = data[5 * (index + 1) + 4];
         }
     }
 }
