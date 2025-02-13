@@ -2480,7 +2480,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 623999545}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -2516,7 +2516,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 15, y: 13}
   m_EdgeRadius: 0
 --- !u!114 &623999549
 MonoBehaviour:
@@ -7252,6 +7252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6162f2c5e597c64eb1c28a6abd1fea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadPatients: 0
+  savedPatients: 0
   patientPrefabs:
   - {fileID: 5004514904574566348, guid: 99886635ac7a36b4898c22105ee84a2b, type: 3}
   - {fileID: 5004514904574566348, guid: 37c89a32f5cf25642bd7111326e73488, type: 3}
