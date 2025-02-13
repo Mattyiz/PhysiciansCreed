@@ -7,6 +7,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
 {
     public GameObject heldPatient;
     [SerializeField] private PatientManager pManager;
+    [SerializeField] private PatientInfo patientInfo;
     public GridManager gridManager;
     public int x;
     public int y;
@@ -32,6 +33,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
         if (pManager.clickedPatient != null && heldPatient == null)
         {
             Patient patient = pManager.clickedPatient.GetComponent<Patient>();
+            Debug.Log(patient);
 
             //Returns if the patient size isn't good
             if (!CheckPatientSize(patient))
@@ -56,6 +58,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
 
             //Unclicks the patient and schedules them
             pManager.clickedPatient = null;
+            pManager.patientInfo.HidePatientInfo();
             pManager.ChangeCursor(true);
             patient.clicked = false;
             patient.scheduled = true;
@@ -68,7 +71,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
             heldPatient.transform.position = newPosition;
 
             //Updates the money UI
-            gridManager.UpdateUI(patient.money);
+            gridManager.UpdateUI(patient.funds);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatientManager : MonoBehaviour
 {
+    public PatientInfo patientInfo;
     [SerializeField] private List<GameObject> patientPrefabs;
     [SerializeField] public List<GameObject> patients;
     public GameObject clickedPatient;
@@ -97,6 +98,13 @@ public class PatientManager : MonoBehaviour
 
         Cursor.SetCursor(close, new Vector2(0, 0), CursorMode.Auto);
         WaitingRoom.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public void RegisterPatient(Patient patient)
+    {
+        clickedPatient = patient.gameObject;
+        ChangeCursor(false);
+        patientInfo.DisplayPatientInfo(patient);
     }
 
 }

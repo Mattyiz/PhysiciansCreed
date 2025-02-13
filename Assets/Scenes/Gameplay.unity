@@ -158,7 +158,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 326.243, y: 72.761}
+  m_SizeDelta: {x: 471.01, y: 72.761}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8019923
 MonoBehaviour:
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -601,6 +601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -676,7 +677,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: d153babe8b5839f419a0c70a79b656ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -736,6 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1094,6 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1232,6 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1423,6 +1427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1475,7 +1480,7 @@ GameObject:
   - component: {fileID: 327440904}
   - component: {fileID: 327440905}
   m_Layer: 5
-  m_Name: VerticalLayout (1)
+  m_Name: VerticalLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1493,14 +1498,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 840606032}
   - {fileID: 1164871608}
+  - {fileID: 811873172}
+  - {fileID: 642100539}
   m_Father: {fileID: 591605424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 191.18004, y: -37.99999}
-  m_SizeDelta: {x: 390.84, y: 154.229}
+  m_AnchoredPosition: {x: 201.232, y: -37.99999}
+  m_SizeDelta: {x: 370.737, y: 154.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327440905
 MonoBehaviour:
@@ -1519,7 +1525,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -1576,6 +1582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1801,6 +1808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -1903,6 +1911,7 @@ RectTransform:
   - {fileID: 591605424}
   - {fileID: 496384208}
   - {fileID: 2066685216}
+  - {fileID: 954121933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2119,6 +2128,7 @@ GameObject:
   - component: {fileID: 591605424}
   - component: {fileID: 591605426}
   - component: {fileID: 591605425}
+  - component: {fileID: 591605427}
   m_Layer: 5
   m_Name: PatientInfo
   m_TagString: Untagged
@@ -2185,6 +2195,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591605423}
   m_CullTransparentMesh: 1
+--- !u!114 &591605427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591605423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b91d5180639a040a9436b1fade0854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 16843772}
+  ageText: {fileID: 1460924649}
+  genderText: {fileID: 1718718627}
+  familyStatusText: {fileID: 840606033}
+  conditionText: {fileID: 1164871609}
+  survivalPercentText: {fileID: 811873173}
+  fundsText: {fileID: 642100540}
 --- !u!1 &610270726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,9 +2695,144 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
+--- !u!1 &642100538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642100539}
+  - component: {fileID: 642100541}
+  - component: {fileID: 642100540}
+  m_Layer: 5
+  m_Name: Funds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &642100539
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642100538}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 327440904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 348.299, y: 37.205}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &642100540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642100538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Funds
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
+  m_sharedMaterial: {fileID: 3403049735422653796, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 25
+  m_fontSizeBase: 25
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &642100541
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642100538}
+  m_CullTransparentMesh: 1
 --- !u!1 &650516930
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -2942,6 +3107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -3080,6 +3246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -3252,6 +3419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -3285,12 +3453,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1797222372}
+  m_Father: {fileID: 327440904}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 302.358, y: 37.205}
+  m_SizeDelta: {x: 348.299, y: 37.205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &811873173
 MonoBehaviour:
@@ -3339,8 +3507,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3419,7 +3587,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 327440904}
+  m_Father: {fileID: 1797222372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3473,8 +3641,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3760,9 +3928,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
+--- !u!1 &954121932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954121933}
+  - component: {fileID: 954121935}
+  - component: {fileID: 954121934}
+  m_Layer: 5
+  m_Name: InfoTextImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &954121933
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954121932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2066102327}
+  m_Father: {fileID: 447538078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 551, y: 400.03}
+  m_SizeDelta: {x: 764.041, y: 71.275}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &954121934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954121932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8313726, g: 0.80392164, b: 0.7803922, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 0.2
+--- !u!222 &954121935
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954121932}
+  m_CullTransparentMesh: 1
 --- !u!1 &980506807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,6 +4143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -3949,6 +4195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -4276,6 +4523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -4501,6 +4749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -4639,6 +4888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -4677,7 +4927,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 302.358, y: 37.205}
+  m_SizeDelta: {x: 348.299, y: 37.205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164871609
 MonoBehaviour:
@@ -4726,8 +4976,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4911,6 +5161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -4962,6 +5213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -5100,6 +5352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -5325,6 +5578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -5510,6 +5764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -5879,6 +6134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -6017,6 +6273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -6104,8 +6361,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6336,6 +6593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -6510,8 +6768,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6608,6 +6866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -6728,15 +6987,15 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 16843771}
-  - {fileID: 811873172}
   - {fileID: 1460924648}
   - {fileID: 1718718626}
+  - {fileID: 840606032}
   m_Father: {fileID: 591605424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: -38}
-  m_SizeDelta: {x: 201.52, y: 154.229}
+  m_AnchoredPosition: {x: -89.826, y: -38}
+  m_SizeDelta: {x: 231.869, y: 154.229}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1797222373
 MonoBehaviour:
@@ -6755,7 +7014,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -6984,6 +7243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -7252,6 +7512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6162f2c5e597c64eb1c28a6abd1fea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patientInfo: {fileID: 591605427}
   patientPrefabs:
   - {fileID: 5004514904574566348, guid: 99886635ac7a36b4898c22105ee84a2b, type: 3}
   - {fileID: 5004514904574566348, guid: 37c89a32f5cf25642bd7111326e73488, type: 3}
@@ -7427,6 +7688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -7478,6 +7740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -7703,6 +7966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -7841,6 +8105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -7880,7 +8145,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 435.55, y: 72.761}
+  m_SizeDelta: {x: 471.01, y: 72.761}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1891825785
 MonoBehaviour:
@@ -8055,6 +8320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -8193,6 +8459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0
@@ -8298,6 +8565,140 @@ Transform:
   - {fileID: 666428485}
   m_Father: {fileID: 1037648563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2066102326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066102327}
+  - component: {fileID: 2066102329}
+  - component: {fileID: 2066102328}
+  m_Layer: 5
+  m_Name: WaitingRoomTitleText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2066102327
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066102326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 954121933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0715332, y: -0.000011444092}
+  m_SizeDelta: {x: -0.143, y: -0.00012207}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2066102328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066102326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '[Click and Drag]: Moves & Schedules Patient| [Space] Rotates Patient'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
+  m_sharedMaterial: {fileID: 3403049735422653796, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 19.86
+  m_fontSizeBase: 19.86
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2066102329
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066102326}
+  m_CullTransparentMesh: 1
 --- !u!1 &2066685215
 GameObject:
   m_ObjectHideFlags: 0
@@ -8333,7 +8734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550.63, y: 450.1}
+  m_AnchoredPosition: {x: 550.63, y: 488.02}
   m_SizeDelta: {x: 635.857, y: 104.714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066685217
@@ -8618,6 +9019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldPatient: {fileID: 0}
   pManager: {fileID: 0}
+  patientInfo: {fileID: 0}
   gridManager: {fileID: 0}
   x: 0
   y: 0

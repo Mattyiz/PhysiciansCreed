@@ -340,7 +340,13 @@ MonoBehaviour:
   clicked: 0
   holder: []
   scheduled: 0
-  money: 20
+  fullName: John Smith
+  age: 23
+  gender: M
+  familyStatus: Father of 2
+  condition: Heart Failure
+  survivalPercent: 20
+  funds: 1000
 --- !u!1 &6889281946072735639
 GameObject:
   m_ObjectHideFlags: 0

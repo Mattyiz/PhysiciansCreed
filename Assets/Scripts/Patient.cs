@@ -17,7 +17,14 @@ public class Patient : MonoBehaviour
     public bool scheduled;
 
     [Header("Patient Records")]
-    public int money;
+    public string fullName;
+    public int age;
+    public string gender;
+    public string familyStatus;
+    public string condition;
+    public int survivalPercent;
+    public int funds;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,8 +66,7 @@ public class Patient : MonoBehaviour
         }
 
         //Registers this as being held and clicked, and disables the collider
-        manager.clickedPatient = this.gameObject;
-        manager.ChangeCursor(false);
+        manager.RegisterPatient(this);
         ToggleHitboxes(false);
         clicked = true;
 
@@ -79,7 +85,7 @@ public class Patient : MonoBehaviour
     public void ClearHolder()
     {
         //Updates the UI
-        holder[0].gridManager.UpdateUI(-1 * money);
+        holder[0].gridManager.UpdateUI(-1 * funds);
 
         //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)
