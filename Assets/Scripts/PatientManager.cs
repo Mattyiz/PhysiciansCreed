@@ -5,6 +5,10 @@ using UnityEngine;
 public class PatientManager : MonoBehaviour
 {
     public PatientInfo patientInfo;
+
+    public int deadPatients;
+    public int savedPatients;
+
     [SerializeField] private List<GameObject> patientPrefabs;
     [SerializeField] public List<GameObject> patients;
     public GameObject clickedPatient;
@@ -16,6 +20,7 @@ public class PatientManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        deadPatients = 0;
         clickedPatient = null;
 
         foreach(Transform child in transform)
@@ -68,12 +73,24 @@ public class PatientManager : MonoBehaviour
         {
             if(patients[i].GetComponent<Patient>().scheduled)
             {
+                savedPatients++;
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
                 i--;
 
             }
+            else
+            {
+                deadPatients++;
+                Destroy(patients[i]);
+                patients.RemoveAt(i);
+                i--;
+            }
         }
+
+        ChangeCursor(true);
+
+
     }
 
     void OnRotate()
@@ -89,6 +106,7 @@ public class PatientManager : MonoBehaviour
 
     public void ChangeCursor(bool isOpen)
     {
+
         if (isOpen)
         {
             Cursor.SetCursor(open, new Vector2(0, 0), CursorMode.Auto);
