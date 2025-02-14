@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.IO;
-using JetBrains.Annotations;
-using UnityEngine.SceneManagement;
 
 public class CVSWriter : MonoBehaviour
 {
@@ -67,3 +66,4 @@ public class CVSWriter : MonoBehaviour
         }
     }
 }
+
