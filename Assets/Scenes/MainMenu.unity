@@ -1499,19 +1499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPatientList:
-    patient:
-    - name: 
-      sex: 
-      age: hhh
-      familialStatus: 9
-      condition: 
-      status: 
-    - name: 
-      sex: hhhxt
-      age: 999
-      familialStatus: 
-      condition: 
-      status: 
+    patient: []
 --- !u!1 &1276317230
 GameObject:
   m_ObjectHideFlags: 0
