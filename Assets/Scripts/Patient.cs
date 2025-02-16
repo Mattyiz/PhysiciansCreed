@@ -96,6 +96,7 @@ public class Patient : MonoBehaviour
         if(scheduled)
         {
             scheduled = false;
+            DayManager.Instance.patientsScheduled--;
             ClearHolder();
         }
         

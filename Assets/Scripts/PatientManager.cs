@@ -7,9 +7,6 @@ public class PatientManager : MonoBehaviour
     public GameObject patientHolder; // Holds Patients so they can be hidden in certain cases
     public PatientInfo patientInfo;
 
-    public int deadPatients;
-    public int savedPatients;
-
     [SerializeField] private List<GameObject> patientPrefabs;
     [SerializeField] public List<GameObject> patients;
     public GameObject clickedPatient;
@@ -23,7 +20,6 @@ public class PatientManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        deadPatients = 0;
         clickedPatient = null;
 
         foreach(Transform child in transform)
@@ -96,14 +92,15 @@ public class PatientManager : MonoBehaviour
 
             if(currentPatient.scheduled && currentPatient.patientData.treatmentLength <= 1)
             {
-                savedPatients++;
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
                 i--;
 
             }else if(!currentPatient.scheduled)
             {
-                deadPatients++;
+                // TODO: Make it so patients can survive or die depending on their survival percentage
+                DayManager.Instance.patientsLost++;
+                DayManager.Instance.allLostPatients.Add(currentPatient.patientData);
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
                 i--;

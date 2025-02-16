@@ -71,17 +71,27 @@ public class GridManager : MonoBehaviour
 
                     Patient gridPatient = grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>();
 
-                    if(gridPatient.patientData.treatmentLength == 1 && !gridPatient.locked) // Clear Patient and Get Money
+                    if(gridPatient.patientData.treatmentLength <= 1 && !gridPatient.locked) // Clear Patient and Get Money
                     {
+                        DayManager.Instance.patientsDischarged++;
+                        DayManager.Instance.allSavedPatients.Add(gridPatient.patientData);
                         money += gridPatient.patientData.funds;
                         gridPatient.ClearHolder();
-                    }else if(gridPatient.patientData.treatmentLength > 1 && !gridPatient.locked) // Lock Patient and Get Money
+                    }else if(gridPatient.patientData.treatmentLength > 1 && !gridPatient.locked) // Lock Patient, Get Money, Subtract Treatment Length
                     {
+                        DayManager.Instance.patientsLocked++;
                         money += gridPatient.patientData.funds;
                         gridPatient.patientData.treatmentLength--;
                         gridPatient.locked = true;
-                    }else if(gridPatient.patientData.treatmentLength == 1 && gridPatient.locked) // Clear Patient
+                    }else if(gridPatient.patientData.treatmentLength > 1 && !gridPatient.locked) // Subtract Treatment Length
                     {
+                        DayManager.Instance.patientsLocked++;
+                        gridPatient.patientData.treatmentLength--;
+                    }
+                    else if(gridPatient.patientData.treatmentLength <= 1 && gridPatient.locked) // Clear Patient
+                    {
+                        DayManager.Instance.patientsDischarged++;
+                        DayManager.Instance.allSavedPatients.Add(gridPatient.patientData);
                         gridPatient.ClearHolder();
                     }
                 }

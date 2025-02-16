@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 2026958}
   - component: {fileID: 2026957}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NoPatientsLost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,12 +147,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026955}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 198099052}
+  m_Father: {fileID: 1279239485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -773,42 +773,6 @@ MonoBehaviour:
   gridManager: {fileID: 0}
   x: 0
   y: 0
---- !u!1 &198099051
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 198099052}
-  m_Layer: 5
-  m_Name: NoPatientsLost
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &198099052
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198099051}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2026956}
-  m_Father: {fileID: 1279239485}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -1380, y: -1184}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &215467073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,6 +1648,9 @@ MonoBehaviour:
   adminstratorMessageText: {fileID: 554730721}
   summaryInfo: {fileID: 749543043}
   introText: {fileID: 813061438}
+  noPatientsLost: {fileID: 2026955}
+  mortalityRecordContent: {fileID: 2087235279}
+  lostPatientPrefab: {fileID: 8868964779170520633, guid: c3454d9b27aa57c4590e5306fdd4c958, type: 3}
   startWeek: {fileID: 1832922193}
   endGame: {fileID: 707148993}
   grid: {fileID: 1037648562}
@@ -7342,7 +7309,7 @@ RectTransform:
   m_Children:
   - {fileID: 994188002}
   - {fileID: 2043549360}
-  - {fileID: 198099052}
+  - {fileID: 2026956}
   m_Father: {fileID: 221115634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -7951,7 +7918,7 @@ GameObject:
   - component: {fileID: 1410090777}
   - component: {fileID: 1410090776}
   m_Layer: 5
-  m_Name: ScheduleTitleTextImage
+  m_Name: MortalityRecord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10107,7 +10074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mortality Report
+  m_text: Mortality Record
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
   m_sharedMaterial: {fileID: 3403049735422653796, guid: 7ed2ebde248cbd24cbd43345230db8f1, type: 2}
@@ -10231,8 +10198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patientHolder: {fileID: 1824373267}
   patientInfo: {fileID: 591605427}
-  deadPatients: 0
-  savedPatients: 0
   patientPrefabs:
   - {fileID: 5004514904574566348, guid: 99886635ac7a36b4898c22105ee84a2b, type: 3}
   - {fileID: 5004514904574566348, guid: 37c89a32f5cf25642bd7111326e73488, type: 3}

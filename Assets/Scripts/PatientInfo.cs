@@ -13,9 +13,10 @@ public class PatientInfo : MonoBehaviour
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI treatmentLengthText;
     public TextMeshProUGUI fundsText;
+    [SerializeField] private bool lostPatient;
 
     private void Start() {
-        gameObject.SetActive(false);
+        if (!lostPatient) gameObject.SetActive(false);
     }
 
     public void DisplayPatientInfo(Patient patient) 

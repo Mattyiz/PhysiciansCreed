@@ -62,6 +62,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
             pManager.ChangeCursor(true);
             patient.clicked = false;
             patient.scheduled = true;
+            DayManager.Instance.patientsScheduled++;
 
             //Places the patient where needed
             Vector3 newPosition = new Vector3(0, 0, 0);

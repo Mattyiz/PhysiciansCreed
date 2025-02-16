@@ -6,6 +6,7 @@ using TMPro;
 
 public class DayManager : MonoBehaviour
 {
+    public static DayManager Instance {get; private set;}
 
     [Header("Quota")]
     [SerializeField] private int quota;
@@ -15,12 +16,12 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject quotaText;
 
     [Header("Week Data")]
-    [SerializeField] private int currentWeek = 0;
-    [SerializeField] private int patientsScheduled = 0;
-    [SerializeField] private int patientsLocked = 0;
-    [SerializeField] private int patientsDischarged = 0;
-    [SerializeField] private int patientsWaiting = 0;
-    [SerializeField] private int patientsLost = 0;
+    public int currentWeek = 0;
+    public int patientsScheduled = 0;
+    public int patientsLocked = 0;
+    public int patientsDischarged = 0;
+    public int patientsWaiting = 0;
+    public int patientsLost = 0;
 
     [Header("Game State")] // Where Players schedule patients
     [SerializeField] private GameObject gamePhaseUI;
@@ -41,6 +42,11 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject summaryInfo; // Holds display text for the data that does not appear no the first day
     [SerializeField] private GameObject introText; // Intro for the player
 
+    [Header("Mortality Records")]
+    [SerializeField] private GameObject noPatientsLost;
+    [SerializeField] private GameObject mortalityRecordContent;
+    [SerializeField] private GameObject lostPatientPrefab;
+
     [Header("Buttons")]
     [SerializeField] private GameObject startWeek;
     [SerializeField] private GameObject endGame;
@@ -54,7 +60,17 @@ public class DayManager : MonoBehaviour
     public List<PatientData> allSavedPatients = new List<PatientData>();
     public List<PatientData> allLostPatients = new List<PatientData>();
 
-
+    private void Awake() 
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -123,6 +139,7 @@ public class DayManager : MonoBehaviour
         grid.SetActive(false);
 
         UpdateSummaryUI();
+        UpdateMortalityRecords();
     }
 
     /// <summary>
@@ -201,8 +218,48 @@ public class DayManager : MonoBehaviour
         patientsLost = 0;
     }
 
+    private void UpdateMortalityRecords()
+    {
+        // Check if any patients were lost
+        if (patientsLost > 0)
+        {
+            noPatientsLost.SetActive(false);
+
+            for (int i = 0; i < patientsLost; i++)
+            {
+                GameObject lostPatientUI = Instantiate(lostPatientPrefab, mortalityRecordContent.transform);
+                PatientInfo lostPatientInfo = lostPatientUI.GetComponent<PatientInfo>();
+
+                // Add Patient Info to File
+                PatientData currentPatient = allLostPatients[i];
+
+                SetTextIfValid(lostPatientInfo.nameText, currentPatient.fullName);
+                SetTextIfValid(lostPatientInfo.ageText, currentPatient.age.ToString());
+                SetTextIfValid(lostPatientInfo.genderText, currentPatient.gender);
+                SetTextIfValid(lostPatientInfo.familyStatusText, currentPatient.familyStatus);
+                SetTextIfValid(lostPatientInfo.conditionText, FormatString("Condition: ", currentPatient.condition, ""));
+                SetTextIfValid(lostPatientInfo.survivalPercentText, FormatString("Survival Chance: ", currentPatient.survivalPercent.ToString(), "%"));
+                SetTextIfValid(lostPatientInfo.treatmentLengthText, FormatString("", currentPatient.treatmentLength.ToString(), " Week Treatment"));
+                SetTextIfValid(lostPatientInfo.fundsText, FormatString("Treatment Funds: $", currentPatient.funds.ToString(), ""));
+            }
+        }
+    }
+
     private string FormatString(string prefix, string value, string suffix)
     {
         return prefix + value + suffix;
+    }
+
+    private void SetTextIfValid(TextMeshProUGUI textField, string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            textField.text = value;
+            textField.gameObject.SetActive(true); // Show the text field
+        }
+        else
+        {
+            textField.gameObject.SetActive(false); // Hide the text field
+        }
     }
 }
