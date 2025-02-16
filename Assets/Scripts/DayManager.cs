@@ -70,23 +70,14 @@ public class DayManager : MonoBehaviour
         // Switch UI
         ChangeGameState(true);
 
-        currentWeek++;
-        fundsEarned = 0;
-
-        if(currentWeek == 1)
-        {
-            quota = firstDayQuota;
-            introText.SetActive(false);
-        }
-        else
-        {
-            quota = quota + (quota / 10);
-        }
-        quotaMet = false;
+        // Update Week Data
+        NewWeekData();
+        
+        // Update UI
         quotaText.GetComponent<TMPro.TextMeshProUGUI>().text = "Quota: " + quota;
 
+        // Spawn Patients
         patientManager.GetComponent<PatientManager>().SpawnPatients();
-        grid.SetActive(true);
     }
 
     /// <summary>
@@ -174,6 +165,30 @@ public class DayManager : MonoBehaviour
         }
         customAdminstratorMessage += "Received from Hospital Administrator.";
         adminstratorMessageText.text = customAdminstratorMessage;
+    }
+
+    private void NewWeekData()
+    {
+        currentWeek++;
+
+        if(currentWeek == 1)
+        {
+            quota = firstDayQuota;
+            introText.SetActive(false);
+        }
+        else
+        {
+            quota = quota + (quota / 10);
+        }
+        quotaMet = false;
+
+        // Reset Data
+        fundsEarned = 0;
+        patientsScheduled = 0;
+        patientsLocked = 0;
+        patientsDischarged = 0;
+        patientsWaiting = 0;
+        patientsLost = 0;
     }
 
     private string FormatString(string prefix, string value, string suffix)
