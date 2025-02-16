@@ -20,4 +20,6 @@ public class PatientUIButton : MonoBehaviour
         // Remove this UI element from ScrollView
         Destroy(gameObject);
     }
+
+    
 }

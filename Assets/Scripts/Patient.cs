@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using TMPro;
 public class Patient : MonoBehaviour
 {
 
@@ -15,6 +15,11 @@ public class Patient : MonoBehaviour
     public bool clicked;
     public List<GridSpace> holder;
     public bool scheduled;
+    [Header("Patient UI")]
+    public Transform uiTarget;
+    public RectTransform patientInfoUI;
+    public TextMeshProUGUI survivalPercentText;
+    public TextMeshProUGUI fundsText;
 
     [Header("Patient Records")]
     public string fullName;
@@ -55,6 +60,18 @@ public class Patient : MonoBehaviour
             transform.position = mousePos;
         }
 
+        // Set Patient UI to Sprite Positon
+        if (patientInfoUI != null && uiTarget != null)
+        {
+            // Convert the sprite's world position to screen space
+            Vector2 screenPosition = Camera.main.WorldToScreenPoint(uiTarget.position);
+
+            // Update the UI element's position
+            patientInfoUI.position = screenPosition;
+
+            survivalPercentText.text = survivalPercent.ToString() + "%";
+            fundsText.text = "$" + funds.ToString();
+        }
     }
 
     public void Clicked(PointerEventData eventData)
