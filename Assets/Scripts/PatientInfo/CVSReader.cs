@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class CVSReader : MonoBehaviour
 {
@@ -37,11 +38,7 @@ public class CVSReader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (SceneManager.loadedSceneCount == 2)
-        {
-            WriteCSV();
-        }*/
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (SceneManager.loadedSceneCount == 2)
         {
             WriteCSV();
         }
