@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using TMPro;
 public class Patient : MonoBehaviour
 {
 
@@ -15,9 +15,21 @@ public class Patient : MonoBehaviour
     public bool clicked;
     public List<GridSpace> holder;
     public bool scheduled;
+    [Header("Patient UI")]
+    public Transform uiTarget;
+    public RectTransform patientInfoUI;
+    public TextMeshProUGUI survivalPercentText;
+    public TextMeshProUGUI fundsText;
 
     [Header("Patient Records")]
-    public int money;
+    public string fullName;
+    public int age;
+    public string gender;
+    public string familyStatus;
+    public string condition;
+    public int survivalPercent;
+    public int funds;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +60,18 @@ public class Patient : MonoBehaviour
             transform.position = mousePos;
         }
 
+        // Set Patient UI to Sprite Positon
+        if (patientInfoUI != null && uiTarget != null)
+        {
+            // Convert the sprite's world position to screen space
+            Vector2 screenPosition = Camera.main.WorldToScreenPoint(uiTarget.position);
+
+            // Update the UI element's position
+            patientInfoUI.position = screenPosition;
+
+            survivalPercentText.text = survivalPercent.ToString() + "%";
+            fundsText.text = "$" + funds.ToString();
+        }
     }
 
     public void Clicked(PointerEventData eventData)
@@ -59,8 +83,7 @@ public class Patient : MonoBehaviour
         }
 
         //Registers this as being held and clicked, and disables the collider
-        manager.clickedPatient = this.gameObject;
-        manager.ChangeCursor(false);
+        manager.RegisterPatient(this);
         ToggleHitboxes(false);
         clicked = true;
 
@@ -79,7 +102,7 @@ public class Patient : MonoBehaviour
     public void ClearHolder()
     {
         //Updates the UI
-        holder[0].gridManager.UpdateUI(-1 * money);
+        holder[0].gridManager.UpdateUI(-1 * funds);
 
         //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)

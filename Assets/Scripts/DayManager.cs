@@ -18,11 +18,14 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject waitingRoom;
     [SerializeField] private GameObject endButton;
     [SerializeField] private GameObject quotaText;
+    [SerializeField] private GameObject gameInfo;
+
 
     // Start is called before the first frame update
     void Start()
     {
         currentMoney = 0;
+        gameInfo.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,6 +39,8 @@ public class DayManager : MonoBehaviour
     /// </summary>
     public void StartDay()
     {
+        gameInfo.SetActive(true);
+
         if(quota <= 0)
         {
             quota = firstDayQuota;
@@ -60,6 +65,7 @@ public class DayManager : MonoBehaviour
     /// </summary>
     public void EndDay()
     {
+        gameInfo.SetActive(false);
 
         currentMoney += grid.GetComponent<GridManager>().ChargePatients();
 

@@ -50,7 +50,7 @@ public class GridManager : MonoBehaviour
         }
 
         newRoundMoney += newMoney;
-        moneyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Money: " + carryOverMoney + " (" + newRoundMoney + ")";
+        moneyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Funds Earned: $" + newRoundMoney;
 
     }
 
@@ -68,7 +68,7 @@ public class GridManager : MonoBehaviour
             {
                 if(grid[i, j].GetComponent<GridSpace>().heldPatient != null)
                 {
-                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().money;
+                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().funds;
                     grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().ClearHolder();
                 }
             }
