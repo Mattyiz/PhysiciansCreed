@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class Patient : MonoBehaviour
 {
-
+    public PatientData patientData;
     [SerializeField] private PatientManager manager;
 
     [Header("Grid Stuff")]
@@ -21,17 +21,6 @@ public class Patient : MonoBehaviour
     public TextMeshProUGUI treatmentLengthText;
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI fundsText;
-
-    [Header("Patient Records")]
-    public string fullName;
-    public int age;
-    public string gender;
-    public string familyStatus;
-    public string condition;
-    public int survivalPercent;
-    public int treatmentLength;
-    public int funds;
-
 
     // Start is called before the first frame update
     void Start()
@@ -72,9 +61,9 @@ public class Patient : MonoBehaviour
             patientInfoUI.position = screenPosition;
 
             // Update Display
-            treatmentLengthText.text = treatmentLength.ToString() + " Week(s)";
-            survivalPercentText.text = survivalPercent.ToString() + "%";
-            fundsText.text = "$" + funds.ToString();
+            treatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
+            survivalPercentText.text = patientData.survivalPercent.ToString() + "%";
+            fundsText.text = "$" + patientData.funds.ToString();
         }
     }
 
@@ -106,7 +95,7 @@ public class Patient : MonoBehaviour
     public void ClearHolder()
     {
         //Updates the UI
-        holder[0].gridManager.UpdateUI(-1 * funds);
+        holder[0].gridManager.UpdateUI(-1 * patientData.funds);
 
         //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)

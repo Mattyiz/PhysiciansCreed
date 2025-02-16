@@ -50,6 +50,11 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject patientManager;
 
+    [Header("Patient Data")]
+    public List<PatientData> allSavedPatients = new List<PatientData>();
+    public List<PatientData> allLostPatients = new List<PatientData>();
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -124,6 +129,7 @@ public class DayManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        // If we run out of time we should change this to just going back to the main menu
         SceneManager.LoadScene("Game Over");
     }
 

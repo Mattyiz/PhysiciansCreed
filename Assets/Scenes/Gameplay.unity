@@ -1684,8 +1684,8 @@ MonoBehaviour:
   adminstratorMessageText: {fileID: 554730721}
   summaryInfo: {fileID: 749543043}
   introText: {fileID: 813061438}
-  startWeek: {fileID: 0}
-  endGame: {fileID: 0}
+  startWeek: {fileID: 1832922193}
+  endGame: {fileID: 707148993}
   grid: {fileID: 1037648562}
   patientManager: {fileID: 1853285129}
 --- !u!1 &260198335
@@ -3013,7 +3013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &591605424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3091,6 +3091,7 @@ MonoBehaviour:
   familyStatusText: {fileID: 840606033}
   conditionText: {fileID: 1164871609}
   survivalPercentText: {fileID: 1792161502}
+  treatmentLengthText: {fileID: 811873173}
   fundsText: {fileID: 642100540}
 --- !u!1 &610270726
 GameObject:

@@ -68,7 +68,7 @@ public class GridManager : MonoBehaviour
             {
                 if(grid[i, j].GetComponent<GridSpace>().heldPatient != null)
                 {
-                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().funds;
+                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().patientData.funds;
                     grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().ClearHolder();
                 }
             }

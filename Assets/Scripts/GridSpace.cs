@@ -71,7 +71,7 @@ public class GridSpace : MonoBehaviour, IPointerClickHandler
             heldPatient.transform.position = newPosition;
 
             //Updates the money UI
-            gridManager.UpdateUI(patient.funds);
+            gridManager.UpdateUI(patient.patientData.funds);
         }
     }
 
