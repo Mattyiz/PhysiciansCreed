@@ -20,6 +20,7 @@ public class Patient : MonoBehaviour
     public Transform uiTarget;
     public RectTransform patientInfoUI;
     public TextMeshProUGUI treatmentLengthText;
+    public TextMeshProUGUI lockedTreatmentLengthText;
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI fundsText;
     [SerializeField] private GameObject hudUI;
@@ -57,6 +58,7 @@ public class Patient : MonoBehaviour
         // Set Patient UI to Sprite Positon
         if (patientInfoUI != null && uiTarget != null)
         {
+            patientInfoUI.gameObject.SetActive(true);
             // Convert the sprite's world position to screen space
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(uiTarget.position);
 
@@ -64,15 +66,16 @@ public class Patient : MonoBehaviour
             patientInfoUI.position = screenPosition;
 
             // Update Display
-            treatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
             if(!locked)
             {
+                treatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
                 survivalPercentText.text = patientData.survivalPercent.ToString() + "%";
                 fundsText.text = "$" + patientData.funds.ToString();
+            }else{
+                lockedTreatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
             }
             hudUI.SetActive(!locked);
             lockedUI.SetActive(locked);
-
         }
     }
 

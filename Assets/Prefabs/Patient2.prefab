@@ -457,6 +457,7 @@ MonoBehaviour:
   uiTarget: {fileID: 6867727217224862860}
   patientInfoUI: {fileID: 7577257385247818775}
   treatmentLengthText: {fileID: 3971453684911700606}
+  lockedTreatmentLengthText: {fileID: 8052784870011441246}
   survivalPercentText: {fileID: 8631705837488562483}
   fundsText: {fileID: 5063882305903939317}
   hudUI: {fileID: 1218378016959783691}
@@ -584,6 +585,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2891836649486752257}
     m_Modifications:
+    - target: {fileID: 873525373495718118, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873525373495718118, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873525373495718118, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 873525373495718118, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 905387597379045332, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 905387597379045332, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 905387597379045332, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 905387597379045332, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130184257763816025, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130184257763816025, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130184257763816025, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130184257763816025, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427244593667934346, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427244593667934346, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427244593667934346, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427244593667934346, guid: 94542e550e37aa54482055c570040c70, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5807166761259402442, guid: 94542e550e37aa54482055c570040c70, type: 3}
       propertyPath: m_Name
       value: PatientInfoUI
@@ -710,6 +775,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6468334090067010967, guid: 94542e550e37aa54482055c570040c70, type: 3}
   m_PrefabInstance: {fileID: 3522924211374432640}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8052784870011441246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6855267858066485726, guid: 94542e550e37aa54482055c570040c70, type: 3}
+  m_PrefabInstance: {fileID: 3522924211374432640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8631705837488562483 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5127922525978968243, guid: 94542e550e37aa54482055c570040c70, type: 3}

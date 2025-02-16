@@ -80,8 +80,6 @@ public class GridManager : MonoBehaviour
                         money += gridPatient.patientData.funds;
                         gridPatient.patientData.treatmentLength--;
                         gridPatient.locked = true;
-                        // This is still clearing them and idk how to fix
-                        Debug.Log("Locking Patient");
                     }else if(gridPatient.patientData.treatmentLength == 1 && gridPatient.locked) // Clear Patient
                     {
                         gridPatient.ClearHolder();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PatientManager : MonoBehaviour
 {
+    public GameObject patientHolder; // Holds Patients so they can be hidden in certain cases
     public PatientInfo patientInfo;
 
     public int deadPatients;
@@ -16,6 +17,8 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private Texture2D open;
     [SerializeField] private Texture2D close;
     [SerializeField] private GameObject WaitingRoom;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,24 +44,42 @@ public class PatientManager : MonoBehaviour
     /// </summary>
     public void SpawnPatients()
     {
-        for(int i = 0; i < patientPrefabs.Count; i++)
+        for (int i = 0; i < patientPrefabs.Count; i++)
         {
-            //WARNING EEPY CODE AHEAD
+            GameObject newPatient;
+
             switch (i)
             {
                 case 0:
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(2.5f, 2.7f, 0), transform.rotation));
-                    patients.Add(Instantiate(patientPrefabs[0], new Vector3(4.2f, 2.7f, 0), transform.rotation));
+                    newPatient = Instantiate(patientPrefabs[0], new Vector3(2.5f, 2.7f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
+
+                    newPatient = Instantiate(patientPrefabs[0], new Vector3(4.2f, 2.7f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
                     break;
+
                 case 1:
-                    patients.Add(Instantiate(patientPrefabs[2], new Vector3(6.7f, -1.5f, 0), transform.rotation));
+                    newPatient = Instantiate(patientPrefabs[2], new Vector3(6.7f, -1.5f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
                     break;
+
                 case 2:
-                    patients.Add(Instantiate(patientPrefabs[3], new Vector3(3.3f, -1.7f, 0), transform.rotation));
+                    newPatient = Instantiate(patientPrefabs[3], new Vector3(3.3f, -1.7f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
                     break;
+
                 case 3:
-                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(7.4f, 2.7f, 0), transform.rotation));
-                    patients.Add(Instantiate(patientPrefabs[1], new Vector3(5.8f, 2.7f, 0), transform.rotation));
+                    newPatient = Instantiate(patientPrefabs[1], new Vector3(7.4f, 2.7f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
+
+                    newPatient = Instantiate(patientPrefabs[1], new Vector3(5.8f, 2.7f, 0), transform.rotation);
+                    newPatient.transform.SetParent(patientHolder.transform);
+                    patients.Add(newPatient);
                     break;
             }
         }
@@ -71,15 +92,16 @@ public class PatientManager : MonoBehaviour
     {
         for(int i = 0; i < patients.Count; i++)
         {
-            if(patients[i].GetComponent<Patient>().scheduled)
+            Patient currentPatient = patients[i].GetComponent<Patient>();
+
+            if(currentPatient.scheduled && currentPatient.patientData.treatmentLength <= 1)
             {
                 savedPatients++;
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
                 i--;
 
-            }
-            else
+            }else if(!currentPatient.scheduled)
             {
                 deadPatients++;
                 Destroy(patients[i]);

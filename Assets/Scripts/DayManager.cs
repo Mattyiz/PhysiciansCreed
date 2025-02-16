@@ -142,6 +142,9 @@ public class DayManager : MonoBehaviour
         gamePhaseUI.SetActive(gameStateActive);
         gamePhaseSprites.SetActive(gameStateActive);
         summaryPhaseUI.SetActive(!gameStateActive);
+
+        // Hide any patients
+        patientManager.GetComponent<PatientManager>().patientHolder.SetActive(gameStateActive);
     }
 
     private void UpdateSummaryUI()

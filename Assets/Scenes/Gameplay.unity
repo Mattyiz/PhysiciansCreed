@@ -1688,6 +1688,8 @@ MonoBehaviour:
   endGame: {fileID: 707148993}
   grid: {fileID: 1037648562}
   patientManager: {fileID: 1853285129}
+  allSavedPatients: []
+  allLostPatients: []
 --- !u!1 &260198335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9573,6 +9575,37 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &1824373267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1824373268}
+  m_Layer: 0
+  m_Name: PatientHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1824373268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824373267}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1825278796
 GameObject:
   m_ObjectHideFlags: 0
@@ -10196,6 +10229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6162f2c5e597c64eb1c28a6abd1fea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patientHolder: {fileID: 1824373267}
   patientInfo: {fileID: 591605427}
   deadPatients: 0
   savedPatients: 0
@@ -12138,4 +12172,5 @@ SceneRoots:
   - {fileID: 2080659732}
   - {fileID: 698483061}
   - {fileID: 1853285130}
+  - {fileID: 1824373268}
   - {fileID: 447538078}
