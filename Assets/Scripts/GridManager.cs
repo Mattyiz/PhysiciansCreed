@@ -68,8 +68,24 @@ public class GridManager : MonoBehaviour
             {
                 if(grid[i, j].GetComponent<GridSpace>().heldPatient != null)
                 {
-                    money += grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().patientData.funds;
-                    grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>().ClearHolder();
+
+                    Patient gridPatient = grid[i, j].GetComponent<GridSpace>().heldPatient.GetComponent<Patient>();
+
+                    if(gridPatient.patientData.treatmentLength == 1 && !gridPatient.locked) // Clear Patient and Get Money
+                    {
+                        money += gridPatient.patientData.funds;
+                        gridPatient.ClearHolder();
+                    }else if(gridPatient.patientData.treatmentLength > 1 && !gridPatient.locked) // Lock Patient and Get Money
+                    {
+                        money += gridPatient.patientData.funds;
+                        gridPatient.patientData.treatmentLength--;
+                        gridPatient.locked = true;
+                        // This is still clearing them and idk how to fix
+                        Debug.Log("Locking Patient");
+                    }else if(gridPatient.patientData.treatmentLength == 1 && gridPatient.locked) // Clear Patient
+                    {
+                        gridPatient.ClearHolder();
+                    }
                 }
             }
         }

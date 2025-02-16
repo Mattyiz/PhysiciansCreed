@@ -444,7 +444,7 @@ MonoBehaviour:
     familyStatus: Father of 2
     condition: Heart Failure
     survivalPercent: 20
-    treatmentLength: 1
+    treatmentLength: 3
     funds: 1000
   manager: {fileID: 0}
   sizeX: 1
@@ -453,19 +453,14 @@ MonoBehaviour:
   clicked: 0
   holder: []
   scheduled: 0
+  locked: 0
   uiTarget: {fileID: 6867727217224862860}
   patientInfoUI: {fileID: 7577257385247818775}
   treatmentLengthText: {fileID: 3971453684911700606}
   survivalPercentText: {fileID: 8631705837488562483}
   fundsText: {fileID: 5063882305903939317}
-  fullName: John Smith
-  age: 23
-  gender: M
-  familyStatus: Father of 2
-  condition: Heart Failure
-  survivalPercent: 20
-  treatmentLength: 1
-  funds: 1000
+  hudUI: {fileID: 1218378016959783691}
+  lockedUI: {fileID: 5020057082326775165}
 --- !u!1 &6889281946072735639
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +673,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94542e550e37aa54482055c570040c70, type: 3}
+--- !u!1 &1218378016959783691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2309076390694142603, guid: 94542e550e37aa54482055c570040c70, type: 3}
+  m_PrefabInstance: {fileID: 3522924211374432640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3971453684911700606 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 576039579732892670, guid: 94542e550e37aa54482055c570040c70, type: 3}
@@ -689,6 +689,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5020057082326775165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8451325440426890493, guid: 94542e550e37aa54482055c570040c70, type: 3}
+  m_PrefabInstance: {fileID: 3522924211374432640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5063882305903939317 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8549370064809422709, guid: 94542e550e37aa54482055c570040c70, type: 3}

@@ -83,6 +83,7 @@ public class DayManager : MonoBehaviour
 
         // Spawn Patients
         patientManager.GetComponent<PatientManager>().SpawnPatients();
+        grid.SetActive(true);
     }
 
     /// <summary>

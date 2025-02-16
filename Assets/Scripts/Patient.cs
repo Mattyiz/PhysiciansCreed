@@ -15,12 +15,15 @@ public class Patient : MonoBehaviour
     public bool clicked;
     public List<GridSpace> holder;
     public bool scheduled;
+    public bool locked = false;
     [Header("Patient UI")]
     public Transform uiTarget;
     public RectTransform patientInfoUI;
     public TextMeshProUGUI treatmentLengthText;
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI fundsText;
+    [SerializeField] private GameObject hudUI;
+    [SerializeField] private GameObject lockedUI;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +44,7 @@ public class Patient : MonoBehaviour
     void Update()
     {
         
-        if(clicked)
+        if(clicked && !locked)
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -62,15 +65,21 @@ public class Patient : MonoBehaviour
 
             // Update Display
             treatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
-            survivalPercentText.text = patientData.survivalPercent.ToString() + "%";
-            fundsText.text = "$" + patientData.funds.ToString();
+            if(!locked)
+            {
+                survivalPercentText.text = patientData.survivalPercent.ToString() + "%";
+                fundsText.text = "$" + patientData.funds.ToString();
+            }
+            hudUI.SetActive(!locked);
+            lockedUI.SetActive(locked);
+
         }
     }
 
     public void Clicked(PointerEventData eventData)
     {
-        //Return if already holding a patient
-        if (manager.clickedPatient != null)
+        //Return if already holding a patient or Locked
+        if (manager.clickedPatient != null || locked)
         {
             return;
         }
