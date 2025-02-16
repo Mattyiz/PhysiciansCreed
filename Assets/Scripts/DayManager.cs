@@ -9,11 +9,18 @@ public class DayManager : MonoBehaviour
 
     [Header("Quota")]
     [SerializeField] private int quota;
-    [SerializeField] private int currentMoney;
+    [SerializeField] private int fundsEarned = 0;
     [SerializeField] private int firstDayQuota;
+    [SerializeField] private bool quotaMet = false;
+    [SerializeField] private GameObject quotaText;
 
     [Header("Week Data")]
-    private int currentWeek = 0;
+    [SerializeField] private int currentWeek = 0;
+    [SerializeField] private int patientsScheduled = 0;
+    [SerializeField] private int patientsLocked = 0;
+    [SerializeField] private int patientsDischarged = 0;
+    [SerializeField] private int patientsWaiting = 0;
+    [SerializeField] private int patientsLost = 0;
 
     [Header("Game State")] // Where Players schedule patients
     [SerializeField] private GameObject gamePhaseUI;
@@ -24,7 +31,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject summaryPhaseUI; // All the UI
     [SerializeField] private TextMeshProUGUI weekNumberText; // Week Number Display
     [SerializeField] private TextMeshProUGUI quotaResultText; // Quota Result Display
-    [SerializeField] private TextMeshProUGUI treatmentsscheduledText; // Treatments Scheduled Display
+    [SerializeField] private TextMeshProUGUI treatmentsScheduledText; // Treatments Scheduled Display
     [SerializeField] private TextMeshProUGUI underObservationText; // Under Observation Display
     [SerializeField] private TextMeshProUGUI dischargedText; // Discharged Display
     [SerializeField] private TextMeshProUGUI awaitingTreatmentText; // Awaiting Treatment Display
@@ -34,22 +41,19 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject summaryInfo; // Holds display text for the data that does not appear no the first day
     [SerializeField] private GameObject introText; // Intro for the player
 
+    [Header("Buttons")]
+    [SerializeField] private GameObject startWeek;
+    [SerializeField] private GameObject endGame;
+
+
     [Header("Game Objects")]
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject patientManager;
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private GameObject waitingRoom;
-    [SerializeField] private GameObject endButton;
-    [SerializeField] private GameObject quotaText;
-    [SerializeField] private GameObject gameInfo;    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        // Set Data
-        currentMoney = 0;
-
         // Display Intro
         introText.SetActive(true);
         summaryInfo.SetActive(false);
@@ -67,6 +71,7 @@ public class DayManager : MonoBehaviour
         ChangeGameState(true);
 
         currentWeek++;
+        fundsEarned = 0;
 
         if(currentWeek == 1)
         {
@@ -77,7 +82,7 @@ public class DayManager : MonoBehaviour
         {
             quota = quota + (quota / 10);
         }
-
+        quotaMet = false;
         quotaText.GetComponent<TMPro.TextMeshProUGUI>().text = "Quota: " + quota;
 
         patientManager.GetComponent<PatientManager>().SpawnPatients();
@@ -99,31 +104,34 @@ public class DayManager : MonoBehaviour
         // Switch UI
         ChangeGameState(false);
 
-        currentMoney += grid.GetComponent<GridManager>().ChargePatients();
+        fundsEarned += grid.GetComponent<GridManager>().ChargePatients();
 
         //Game over if didn't meet quota
-        if(quota <= currentMoney)
+        if(quota <= fundsEarned)
         {
-            currentMoney -= quota;
-        }
-        else
+            quotaMet = true;
+        }else
         {
-            GameOver();
+            quotaMet = false;
         }
+        startWeek.SetActive(quotaMet);
+        endGame.SetActive(!quotaMet);
 
         //Updates money UI
-        grid.GetComponent<GridManager>().carryOverMoney = currentMoney;
+        grid.GetComponent<GridManager>().carryOverMoney = fundsEarned;
         grid.GetComponent<GridManager>().UpdateUI(-1000);
 
         //Treats patients, disables grid
         patientManager.GetComponent<PatientManager>().TreatPatients();
         grid.SetActive(false);
+
+        UpdateSummaryUI();
     }
 
     /// <summary>
     /// Goes to game over scene
     /// </summary>
-    private void GameOver()
+    public void GameOver()
     {
         SceneManager.LoadScene("Game Over");
     }
@@ -136,5 +144,40 @@ public class DayManager : MonoBehaviour
         gamePhaseUI.SetActive(gameStateActive);
         gamePhaseSprites.SetActive(gameStateActive);
         summaryPhaseUI.SetActive(!gameStateActive);
+    }
+
+    private void UpdateSummaryUI()
+    {
+        weekNumberText.text = FormatString("Week ", currentWeek.ToString(), ".");
+        quotaResultText.text = quotaMet ? "✓ Quota Achieved." : "× Quota Failed.";
+        treatmentsScheduledText.text = FormatString("✓ ", patientsScheduled.ToString(), " Treatment(s) Scheduled.");
+        underObservationText.text = FormatString("✓ ", patientsLocked.ToString(), " Patient(s) Under Observation.");
+        dischargedText.text = FormatString("✓ ", patientsDischarged.ToString(), " Patient(s) Discharged.");
+
+        string awaitingTreatmenSymbol = patientsWaiting == 0 ? "✓ " : "× ";
+        string patientsLostSymbol = patientsLost == 0 ? "✓ " : "× ";
+        awaitingTreatmentText.text = FormatString(awaitingTreatmenSymbol, patientsWaiting.ToString(), "  Patient(s) Awaiting Treatment.");
+        patientsLostText.text = FormatString(patientsLostSymbol, patientsLost.ToString(), " Patient(s) Lost.");
+
+        nextQuotaText.text = FormatString("Next Quota: ", (quota + (quota / 10)).ToString(), "");
+
+        // Custom Adminstrator Message cause I wanna:
+        string customAdminstratorMessage = "";
+        if(!quotaMet) // Player Fails
+        {
+            customAdminstratorMessage = "For failure to meet quota, you are hereby terminated.\n" + "Please clear out your desk.\n";
+        }else if(patientsLost > 0)
+        {
+            customAdminstratorMessage = "Please keep patient casualties at a minimum.\n";
+        }else{
+            customAdminstratorMessage = "Keep up the good work, Doctor.\n";
+        }
+        customAdminstratorMessage += "Received from Hospital Administrator.";
+        adminstratorMessageText.text = customAdminstratorMessage;
+    }
+
+    private string FormatString(string prefix, string value, string suffix)
+    {
+        return prefix + value + suffix;
     }
 }
