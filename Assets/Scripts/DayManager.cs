@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DayManager : MonoBehaviour
 {
@@ -11,6 +12,28 @@ public class DayManager : MonoBehaviour
     [SerializeField] private int currentMoney;
     [SerializeField] private int firstDayQuota;
 
+    [Header("Week Data")]
+    private int currentWeek = 0;
+
+    [Header("Game State")] // Where Players schedule patients
+    [SerializeField] private GameObject gamePhaseUI;
+    [SerializeField] private GameObject gamePhaseSprites;
+    private bool gameStateActive;
+
+    [Header("Summary State")] // Where Players recieve their results from the game phase
+    [SerializeField] private GameObject summaryPhaseUI; // All the UI
+    [SerializeField] private TextMeshProUGUI weekNumberText; // Week Number Display
+    [SerializeField] private TextMeshProUGUI quotaResultText; // Quota Result Display
+    [SerializeField] private TextMeshProUGUI treatmentsscheduledText; // Treatments Scheduled Display
+    [SerializeField] private TextMeshProUGUI underObservationText; // Under Observation Display
+    [SerializeField] private TextMeshProUGUI dischargedText; // Discharged Display
+    [SerializeField] private TextMeshProUGUI awaitingTreatmentText; // Awaiting Treatment Display
+    [SerializeField] private TextMeshProUGUI patientsLostText; // Patients Lost that Week Display
+    [SerializeField] private TextMeshProUGUI nextQuotaText; // Patients Lost that Week Display
+    [SerializeField] private TextMeshProUGUI adminstratorMessageText; // Patients Lost that Week Display
+    [SerializeField] private GameObject summaryInfo; // Holds display text for the data that does not appear no the first day
+    [SerializeField] private GameObject introText; // Intro for the player
+
     [Header("Game Objects")]
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject patientManager;
@@ -18,20 +41,21 @@ public class DayManager : MonoBehaviour
     [SerializeField] private GameObject waitingRoom;
     [SerializeField] private GameObject endButton;
     [SerializeField] private GameObject quotaText;
-    [SerializeField] private GameObject gameInfo;
+    [SerializeField] private GameObject gameInfo;    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // Set Data
         currentMoney = 0;
-        gameInfo.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Display Intro
+        introText.SetActive(true);
+        summaryInfo.SetActive(false);
+
+        // Hide Game State
+        ChangeGameState(false);
     }
 
     /// <summary>
@@ -39,11 +63,15 @@ public class DayManager : MonoBehaviour
     /// </summary>
     public void StartDay()
     {
-        gameInfo.SetActive(true);
+        // Switch UI
+        ChangeGameState(true);
 
-        if(quota <= 0)
+        currentWeek++;
+
+        if(currentWeek == 1)
         {
             quota = firstDayQuota;
+            introText.SetActive(false);
         }
         else
         {
@@ -54,10 +82,6 @@ public class DayManager : MonoBehaviour
 
         patientManager.GetComponent<PatientManager>().SpawnPatients();
         grid.SetActive(true);
-        waitingRoom.SetActive(true);
-
-        startButton.SetActive(false);
-        endButton.SetActive(true);
     }
 
     /// <summary>
@@ -65,7 +89,15 @@ public class DayManager : MonoBehaviour
     /// </summary>
     public void EndDay()
     {
-        gameInfo.SetActive(false);
+        if(currentWeek == 1)
+        {
+            // Hide Intro and Display Summary
+            introText.SetActive(false);
+            summaryInfo.SetActive(true);
+        }
+
+        // Switch UI
+        ChangeGameState(false);
 
         currentMoney += grid.GetComponent<GridManager>().ChargePatients();
 
@@ -86,9 +118,6 @@ public class DayManager : MonoBehaviour
         //Treats patients, disables grid
         patientManager.GetComponent<PatientManager>().TreatPatients();
         grid.SetActive(false);
-        waitingRoom.SetActive(false);
-        startButton.SetActive(true);
-        endButton.SetActive(false);
     }
 
     /// <summary>
@@ -97,5 +126,15 @@ public class DayManager : MonoBehaviour
     private void GameOver()
     {
         SceneManager.LoadScene("Game Over");
+    }
+
+    private void ChangeGameState(bool activateGameState)
+    {
+        gameStateActive = activateGameState;
+
+        // Update Parent UI States
+        gamePhaseUI.SetActive(gameStateActive);
+        gamePhaseSprites.SetActive(gameStateActive);
+        summaryPhaseUI.SetActive(!gameStateActive);
     }
 }

@@ -18,6 +18,7 @@ public class Patient : MonoBehaviour
     [Header("Patient UI")]
     public Transform uiTarget;
     public RectTransform patientInfoUI;
+    public TextMeshProUGUI treatmentLengthText;
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI fundsText;
 
@@ -28,6 +29,7 @@ public class Patient : MonoBehaviour
     public string familyStatus;
     public string condition;
     public int survivalPercent;
+    public int treatmentLength;
     public int funds;
 
 
@@ -69,6 +71,8 @@ public class Patient : MonoBehaviour
             // Update the UI element's position
             patientInfoUI.position = screenPosition;
 
+            // Update Display
+            treatmentLengthText.text = treatmentLength.ToString() + " Week(s)";
             survivalPercentText.text = survivalPercent.ToString() + "%";
             fundsText.text = "$" + funds.ToString();
         }
