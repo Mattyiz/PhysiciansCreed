@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class Patient : MonoBehaviour
 {
-
+    public PatientData patientData;
     [SerializeField] private PatientManager manager;
 
     [Header("Grid Stuff")]
@@ -15,21 +15,16 @@ public class Patient : MonoBehaviour
     public bool clicked;
     public List<GridSpace> holder;
     public bool scheduled;
+    public bool locked = false;
     [Header("Patient UI")]
     public Transform uiTarget;
     public RectTransform patientInfoUI;
+    public TextMeshProUGUI treatmentLengthText;
+    public TextMeshProUGUI lockedTreatmentLengthText;
     public TextMeshProUGUI survivalPercentText;
     public TextMeshProUGUI fundsText;
-
-    [Header("Patient Records")]
-    public string fullName;
-    public int age;
-    public string gender;
-    public string familyStatus;
-    public string condition;
-    public int survivalPercent;
-    public int funds;
-
+    [SerializeField] private GameObject hudUI;
+    [SerializeField] private GameObject lockedUI;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +45,7 @@ public class Patient : MonoBehaviour
     void Update()
     {
         
-        if(clicked)
+        if(clicked && !locked)
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -63,21 +58,31 @@ public class Patient : MonoBehaviour
         // Set Patient UI to Sprite Positon
         if (patientInfoUI != null && uiTarget != null)
         {
+            patientInfoUI.gameObject.SetActive(true);
             // Convert the sprite's world position to screen space
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(uiTarget.position);
 
             // Update the UI element's position
             patientInfoUI.position = screenPosition;
 
-            survivalPercentText.text = survivalPercent.ToString() + "%";
-            fundsText.text = "$" + funds.ToString();
+            // Update Display
+            if(!locked)
+            {
+                treatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
+                survivalPercentText.text = patientData.survivalPercent.ToString() + "%";
+                fundsText.text = "$" + patientData.funds.ToString();
+            }else{
+                lockedTreatmentLengthText.text = patientData.treatmentLength.ToString() + " Week(s)";
+            }
+            hudUI.SetActive(!locked);
+            lockedUI.SetActive(locked);
         }
     }
 
     public void Clicked(PointerEventData eventData)
     {
-        //Return if already holding a patient
-        if (manager.clickedPatient != null)
+        //Return if already holding a patient or Locked
+        if (manager.clickedPatient != null || locked)
         {
             return;
         }
@@ -91,6 +96,7 @@ public class Patient : MonoBehaviour
         if(scheduled)
         {
             scheduled = false;
+            DayManager.Instance.patientsScheduled--;
             ClearHolder();
         }
         
@@ -102,7 +108,7 @@ public class Patient : MonoBehaviour
     public void ClearHolder()
     {
         //Updates the UI
-        holder[0].gridManager.UpdateUI(-1 * funds);
+        holder[0].gridManager.UpdateUI(-1 * patientData.funds);
 
         //Goes through each grid space holding this and removes this from it
         while (holder.Count > 0)

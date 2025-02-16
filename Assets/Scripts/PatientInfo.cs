@@ -11,22 +11,25 @@ public class PatientInfo : MonoBehaviour
     public TextMeshProUGUI familyStatusText;
     public TextMeshProUGUI conditionText;
     public TextMeshProUGUI survivalPercentText;
+    public TextMeshProUGUI treatmentLengthText;
     public TextMeshProUGUI fundsText;
+    [SerializeField] private bool lostPatient;
 
     private void Start() {
-        gameObject.SetActive(false);
+        if (!lostPatient) gameObject.SetActive(false);
     }
 
     public void DisplayPatientInfo(Patient patient) 
     {
         // Display or hide each field based on whether the data is available
-        SetTextIfValid(nameText, patient.fullName);
-        SetTextIfValid(ageText, patient.age.ToString());
-        SetTextIfValid(genderText, patient.gender);
-        SetTextIfValid(familyStatusText, patient.familyStatus);
-        SetTextIfValid(conditionText, FormatString("Condition: ", patient.condition, ""));
-        SetTextIfValid(survivalPercentText, FormatString("Survival Chance: ", patient.survivalPercent.ToString(), "%"));
-        SetTextIfValid(fundsText, FormatString("Treatment Funds: $", patient.funds.ToString(), ""));
+        SetTextIfValid(nameText, patient.patientData.fullName);
+        SetTextIfValid(ageText, patient.patientData.age.ToString());
+        SetTextIfValid(genderText, patient.patientData.gender);
+        SetTextIfValid(familyStatusText, patient.patientData.familyStatus);
+        SetTextIfValid(conditionText, FormatString("Condition: ", patient.patientData.condition, ""));
+        SetTextIfValid(survivalPercentText, FormatString("Survival Chance: ", patient.patientData.survivalPercent.ToString(), "%"));
+        SetTextIfValid(treatmentLengthText, FormatString("", patient.patientData.treatmentLength.ToString(), " Week Treatment"));
+        SetTextIfValid(fundsText, FormatString("Treatment Funds: $", patient.patientData.funds.ToString(), ""));
 
         gameObject.SetActive(true);
     }
