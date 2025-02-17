@@ -90,7 +90,7 @@ public class PatientManager : MonoBehaviour
         {
             Patient currentPatient = patients[i].GetComponent<Patient>();
 
-            if(currentPatient.scheduled && currentPatient.patientData.treatmentLength <= 1)
+            if(currentPatient.scheduled && currentPatient.patientData.treatmentLength <= 1 && !currentPatient.locked)
             {
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
@@ -98,12 +98,16 @@ public class PatientManager : MonoBehaviour
 
             }else if(!currentPatient.scheduled)
             {
+
                 // TODO: Make it so patients can survive or die depending on their survival percentage
                 DayManager.Instance.patientsLost++;
                 DayManager.Instance.allLostPatients.Add(currentPatient.patientData);
                 Destroy(patients[i]);
                 patients.RemoveAt(i);
                 i--;
+            }else if(currentPatient.scheduled && currentPatient.locked)
+            {
+                currentPatient.treatedThisWeek = false;
             }
         }
 

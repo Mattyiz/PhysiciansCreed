@@ -16,6 +16,7 @@ public class Patient : MonoBehaviour
     public List<GridSpace> holder;
     public bool scheduled;
     public bool locked = false;
+    public bool treatedThisWeek = false;
     [Header("Patient UI")]
     public Transform uiTarget;
     public RectTransform patientInfoUI;
