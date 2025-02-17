@@ -79,6 +79,18 @@ public class Patient : MonoBehaviour
         }
     }
 
+    public void SetData(string name, string sex, int age, string familialStatus, string condition)
+    {
+        patientData.fullName = name;
+        patientData.gender = sex;
+        patientData.age = age;
+        patientData.familyStatus = familialStatus;
+        patientData.condition = condition;
+        patientData.survivalPercent = Random.Range(25, 101);
+        patientData.funds = Random.Range(10, 51);
+        patientData.treatmentLength = Random.Range(1, 4);
+    }
+
     public void Clicked(PointerEventData eventData)
     {
         //Return if already holding a patient or Locked

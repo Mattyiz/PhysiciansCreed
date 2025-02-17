@@ -14,7 +14,9 @@ public class PatientManager : MonoBehaviour
     [SerializeField] private Texture2D open;
     [SerializeField] private Texture2D close;
     [SerializeField] private GameObject WaitingRoom;
-    
+
+    public CVSReader cvsReader;
+
 
 
     // Start is called before the first frame update
@@ -56,6 +58,8 @@ public class PatientManager : MonoBehaviour
             GameObject newPatient = Instantiate(randomPatientPrefab, randomPosition, transform.rotation);
             newPatient.transform.SetParent(patientHolder.transform);
             patients.Add(newPatient);
+
+            AssignRandomPatientData(newPatient);
         }
     }
 
@@ -93,10 +97,36 @@ public class PatientManager : MonoBehaviour
         return patientPrefabs[randomI];
     }
 
-/// <summary>
-/// Goes through the patients, if they're scheduled, destroy them
-/// </summary>
-public void TreatPatients()
+     private void AssignRandomPatientData(GameObject patient)
+    {
+        // Get the PatientData component from the patient prefab
+        Patient patientData = patient.GetComponent<Patient>();
+
+        if (patientData != null && cvsReader != null && cvsReader.thePatientList.patient.Length > 0)
+        {
+            // Randomly select a patient from the CVSReader's patient list
+            int randomIndex = Random.Range(0, cvsReader.thePatientList.patient.Length);
+            CVSReader.Patient randomPatient = cvsReader.thePatientList.patient[randomIndex];
+
+            // Assign the data to the patient
+            patientData.SetData(
+                randomPatient.name,
+                randomPatient.sex,
+                int.Parse(randomPatient.age),
+                randomPatient.familialStatus,
+                randomPatient.condition
+            );
+        }
+        else
+        {
+            Debug.LogWarning("PatientData component or CVSReader data is missing!");
+        }
+    }
+
+    /// <summary>
+    /// Goes through the patients, if they're scheduled, destroy them
+    /// </summary>
+    public void TreatPatients()
     {
         for(int i = 0; i < patients.Count; i++)
         {

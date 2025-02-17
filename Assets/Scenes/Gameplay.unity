@@ -10210,6 +10210,7 @@ MonoBehaviour:
   open: {fileID: 2800000, guid: 920980beb9e7ee742a6e455d1dda3afa, type: 3}
   close: {fileID: 2800000, guid: 412ed327681df9a4ba8c120af8614430, type: 3}
   WaitingRoom: {fileID: 623999545}
+  cvsReader: {fileID: 1853285133}
 --- !u!114 &1853285132
 MonoBehaviour:
   m_ObjectHideFlags: 0
