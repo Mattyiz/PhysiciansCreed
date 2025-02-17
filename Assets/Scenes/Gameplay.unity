@@ -10209,6 +10209,8 @@ MonoBehaviour:
   clickedPatient: {fileID: 0}
   open: {fileID: 2800000, guid: 920980beb9e7ee742a6e455d1dda3afa, type: 3}
   close: {fileID: 2800000, guid: 412ed327681df9a4ba8c120af8614430, type: 3}
+  bloodyOpen: {fileID: 2800000, guid: 4926b1c952ed38d4ba652ec5075642f7, type: 3}
+  bloodyClose: {fileID: 2800000, guid: 6ab21ca268fe5bc4083f9a830e5cf6b7, type: 3}
   WaitingRoom: {fileID: 623999545}
   cvsReader: {fileID: 1853285133}
 --- !u!114 &1853285132
