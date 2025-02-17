@@ -177,6 +177,7 @@ public class PatientManager : MonoBehaviour
                     currentPatient.patientData.survivalPercent = (int)(currentPatient.patientData.survivalPercent * 0.9f); //decrease survival rate
                     if (currentPatient.patientData.survivalPercent < 10)
                         currentPatient.patientData.survivalPercent = 10; //Prevent it from reaching 0%
+                    DayManager.Instance.patientsWaiting++;
                 }
             }
             else if(currentPatient.scheduled && currentPatient.locked)
