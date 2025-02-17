@@ -3062,6 +3062,7 @@ MonoBehaviour:
   survivalPercentText: {fileID: 1792161502}
   treatmentLengthText: {fileID: 811873173}
   fundsText: {fileID: 642100540}
+  lostPatient: 0
 --- !u!1 &610270726
 GameObject:
   m_ObjectHideFlags: 0
@@ -10162,6 +10163,7 @@ GameObject:
   - component: {fileID: 1853285130}
   - component: {fileID: 1853285131}
   - component: {fileID: 1853285132}
+  - component: {fileID: 1853285133}
   m_Layer: 0
   m_Name: PatientManager
   m_TagString: Untagged
@@ -10238,6 +10240,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1853285133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853285129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f935163f9dcfe44ba72e45c04040e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textAssetData: {fileID: 4900000, guid: e5be37e3aa5827449942aecd28cb6fcc, type: 3}
+  thePatientList:
+    patient: []
 --- !u!1 &1859196008
 GameObject:
   m_ObjectHideFlags: 0
