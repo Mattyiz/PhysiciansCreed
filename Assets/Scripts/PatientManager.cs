@@ -15,6 +15,8 @@ public class PatientManager : MonoBehaviour
 
     [SerializeField] private Texture2D open;
     [SerializeField] private Texture2D close;
+    [SerializeField] private Texture2D bloodyOpen;
+    [SerializeField] private Texture2D bloodyClose;
     [SerializeField] private GameObject WaitingRoom;
 
     public CVSReader cvsReader;
@@ -202,15 +204,24 @@ public class PatientManager : MonoBehaviour
     public void ChangeCursor(bool isOpen)
     {
 
-        if (isOpen)
+        if (isOpen && DayManager.Instance.allLostPatients.Count <= 0) // Non Bloody Open Cursor
         {
             Cursor.SetCursor(open, new Vector2(0, 0), CursorMode.Auto);
             WaitingRoom.GetComponent<BoxCollider2D>().enabled = false;
             return;
+        }else if(!isOpen && DayManager.Instance.allLostPatients.Count <= 0) // Non Bloody Closed Cursor
+        {
+            Cursor.SetCursor(close, new Vector2(0, 0), CursorMode.Auto);
+            WaitingRoom.GetComponent<BoxCollider2D>().enabled = true;
+        }else if(isOpen && DayManager.Instance.allLostPatients.Count > 0) // Bloody Open Cursor
+        {
+            Cursor.SetCursor(bloodyOpen, new Vector2(0, 0), CursorMode.Auto);
+            WaitingRoom.GetComponent<BoxCollider2D>().enabled = false;
+        }else // Non Bloody Closed
+        {
+            Cursor.SetCursor(bloodyClose, new Vector2(0, 0), CursorMode.Auto);
+            WaitingRoom.GetComponent<BoxCollider2D>().enabled = true;
         }
-
-        Cursor.SetCursor(close, new Vector2(0, 0), CursorMode.Auto);
-        WaitingRoom.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void RegisterPatient(Patient patient)

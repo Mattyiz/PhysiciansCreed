@@ -107,6 +107,7 @@ public class GridManager : MonoBehaviour
                         }else if(gridPatient.patientData.treatmentLength > 1 && gridPatient.locked) // Subtract Treatment Length
                         {
                             //Debug.Log("Already Locked Patient Subtraction");
+                            DayManager.Instance.patientsLocked++;
                             gridPatient.patientData.treatmentLength--;
                         }
                         else if(gridPatient.patientData.treatmentLength <= 1 && gridPatient.locked) // Clear Patient
@@ -114,7 +115,6 @@ public class GridManager : MonoBehaviour
                             gridPatient.locked = false;
                             //Debug.Log("Locked Finally Treated");
                             DayManager.Instance.patientsDischarged++;
-                            DayManager.Instance.patientsLocked--;
                             DayManager.Instance.allSavedPatients.Add(gridPatient.patientData);
                             gridPatient.ClearHolder();
                         }
