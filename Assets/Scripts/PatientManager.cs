@@ -40,51 +40,63 @@ public class PatientManager : MonoBehaviour
     /// </summary>
     public void SpawnPatients()
     {
-        for (int i = 0; i < patientPrefabs.Count; i++)
+        //randomly determine the number of patients to spawn (between 6 and 9)
+        int numberOfPatients = Random.Range(6, 10);
+
+        for (int i = 0; i < numberOfPatients; i++)
         {
-            GameObject newPatient;
+            //randomly select a patient prefab
+            int randomPrefabIndex = Random.Range(0, patientPrefabs.Count);
+            GameObject randomPatientPrefab = GetWeightedRandomPrefab(randomPrefabIndex);
 
-            switch (i)
-            {
-                case 0:
-                    newPatient = Instantiate(patientPrefabs[0], new Vector3(2.5f, 2.7f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
+            //tandomly assign a position within a defined range
+            Vector3 randomPosition = new Vector3(Random.Range(2f, 8f), Random.Range(-2f, 3f), 0);
 
-                    newPatient = Instantiate(patientPrefabs[0], new Vector3(4.2f, 2.7f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
-                    break;
-
-                case 1:
-                    newPatient = Instantiate(patientPrefabs[2], new Vector3(6.7f, -1.5f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
-                    break;
-
-                case 2:
-                    newPatient = Instantiate(patientPrefabs[3], new Vector3(3.3f, -1.7f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
-                    break;
-
-                case 3:
-                    newPatient = Instantiate(patientPrefabs[1], new Vector3(7.4f, 2.7f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
-
-                    newPatient = Instantiate(patientPrefabs[1], new Vector3(5.8f, 2.7f, 0), transform.rotation);
-                    newPatient.transform.SetParent(patientHolder.transform);
-                    patients.Add(newPatient);
-                    break;
-            }
+            //instantiate the patient
+            GameObject newPatient = Instantiate(randomPatientPrefab, randomPosition, transform.rotation);
+            newPatient.transform.SetParent(patientHolder.transform);
+            patients.Add(newPatient);
         }
     }
 
-    /// <summary>
-    /// Goes through the patients, if they're scheduled, destroy them
-    /// </summary>
-    public void TreatPatients()
+    private GameObject GetWeightedRandomPrefab(int randomI)
+    {
+        //assign weights to each prefab
+        List<float> weights = new List<float>();
+        for (int i = 0; i < patientPrefabs.Count; i++)
+        {
+            //give the last prefab a lower weight 1 : 5
+            weights.Add(i == patientPrefabs.Count - 1 ? 1f : 5f);
+        }
+
+        //calculate the total weight
+        float totalWeight = 0;
+        foreach (float weight in weights)
+        {
+            totalWeight += weight;
+        }
+
+        //generate a random number between 0 and the total weight
+        float randomValue = Random.Range(0, totalWeight);
+
+        //determine which prefab to select based on the random value
+        for (int i = 0; i < weights.Count; i++)
+        {
+            if (randomValue < weights[i])
+            {
+                return patientPrefabs[i];
+            }
+            randomValue -= weights[i];
+        }
+
+        //return random if something goes amiss
+        return patientPrefabs[randomI];
+    }
+
+/// <summary>
+/// Goes through the patients, if they're scheduled, destroy them
+/// </summary>
+public void TreatPatients()
     {
         for(int i = 0; i < patients.Count; i++)
         {
