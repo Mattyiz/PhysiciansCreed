@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.43953574, g: 1, b: 0.3726415, a: 1}
+  m_Color: {r: 0.46666667, g: 0.56078434, b: 0.3254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   holder: []
   scheduled: 0
   locked: 0
+  treatedThisWeek: 0
   uiTarget: {fileID: 976770090033373295}
   patientInfoUI: {fileID: 7296587809129857732}
   treatmentLengthText: {fileID: 4285188873154509997}
@@ -295,7 +296,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.43953574, g: 1, b: 0.3726415, a: 1}
+  m_Color: {r: 0.46666667, g: 0.56078434, b: 0.3254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -469,7 +470,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.43953574, g: 1, b: 0.3726415, a: 1}
+  m_Color: {r: 0.46666667, g: 0.56078434, b: 0.3254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -696,7 +697,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.43953574, g: 1, b: 0.3726415, a: 1}
+  m_Color: {r: 0.46666667, g: 0.56078434, b: 0.3254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

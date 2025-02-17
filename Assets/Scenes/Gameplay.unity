@@ -10200,11 +10200,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patientHolder: {fileID: 1824373267}
   patientInfo: {fileID: 591605427}
+  gManager: {fileID: 1037648564}
   patientPrefabs:
   - {fileID: 5004514904574566348, guid: 99886635ac7a36b4898c22105ee84a2b, type: 3}
   - {fileID: 5004514904574566348, guid: 37c89a32f5cf25642bd7111326e73488, type: 3}
   - {fileID: 2322928769296654835, guid: 37ccf299e7a056b498fb7f2d0a358d67, type: 3}
-  - {fileID: 2322928769296654835, guid: 9a0cd6c6df9fea7408e824cc655b1010, type: 3}
+  - {fileID: 2322928769296654835, guid: 00e2254bba88a334183356760ea0934e, type: 3}
   patients: []
   clickedPatient: {fileID: 0}
   open: {fileID: 2800000, guid: 920980beb9e7ee742a6e455d1dda3afa, type: 3}

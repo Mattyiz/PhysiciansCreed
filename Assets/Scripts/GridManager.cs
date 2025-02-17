@@ -5,8 +5,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
 
-    [SerializeField] private int gridX;
-    [SerializeField] private int gridY;
+    [SerializeField] public int gridX;
+    [SerializeField] public int gridY;
     public GameObject[,] grid; //grid is [y,x] sorry but we've come to far to change it
     public GameObject moneyText;
     public int carryOverMoney;
@@ -34,6 +34,23 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    public int CountAvailableGridSpaces()
+    {
+        int count = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            for (int j = 0; j < transform.GetChild(i).childCount; j++)
+            {
+                if (grid[i, j].GetComponent<GridSpace>().heldPatient == null)
+                {
+                    count++;
+                    Debug.Log(count + "," + i + "," + j);
+                }
+            }
+        }
+        return count;
     }
 
     /// <summary>

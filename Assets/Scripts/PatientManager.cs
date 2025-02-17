@@ -6,6 +6,8 @@ public class PatientManager : MonoBehaviour
 {
     public GameObject patientHolder; // Holds Patients so they can be hidden in certain cases
     public PatientInfo patientInfo;
+    public GridManager gManager;
+    private bool first = true;
 
     [SerializeField] private List<GameObject> patientPrefabs;
     [SerializeField] public List<GameObject> patients;
@@ -28,13 +30,12 @@ public class PatientManager : MonoBehaviour
         {
             patients.Add(child.gameObject);
         }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     /// <summary>
@@ -42,8 +43,23 @@ public class PatientManager : MonoBehaviour
     /// </summary>
     public void SpawnPatients()
     {
-        //randomly determine the number of patients to spawn (between 6 and 9)
-        int numberOfPatients = Random.Range(6, 10);
+        int numberOfPatients;
+
+        //inital spawn
+        if (first)
+        {
+            numberOfPatients = Random.Range(6, 10);
+            first = false;
+        }
+        //otherwise
+        else
+        {
+            //randomly determine the number of patients to spawn (based off available grid spaces)
+            int availableSpaces = gManager.CountAvailableGridSpaces();
+
+            //atleast 4 patients spawn
+            numberOfPatients = Mathf.Clamp(Random.Range(4, 10), 0, availableSpaces / 2);
+        }
 
         for (int i = 0; i < numberOfPatients; i++)
         {
@@ -138,16 +154,30 @@ public class PatientManager : MonoBehaviour
                 patients.RemoveAt(i);
                 i--;
 
-            }else if(!currentPatient.scheduled)
+            }
+            else if (!currentPatient.scheduled)
             {
+                float survivalChance = currentPatient.patientData.survivalPercent;
+                float survivalThreshold = Random.Range(0f, 100f);
 
-                // TODO: Make it so patients can survive or die depending on their survival percentage
-                DayManager.Instance.patientsLost++;
-                DayManager.Instance.allLostPatients.Add(currentPatient.patientData);
-                Destroy(patients[i]);
-                patients.RemoveAt(i);
-                i--;
-            }else if(currentPatient.scheduled && currentPatient.locked)
+                if (survivalThreshold > survivalChance)
+                {
+                    //patient dies
+                    DayManager.Instance.patientsLost++;
+                    DayManager.Instance.allLostPatients.Add(currentPatient.patientData);
+                    Destroy(patients[i]);
+                    patients.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    //patient survives but survivalPercent decreases
+                    currentPatient.patientData.survivalPercent = (int)(currentPatient.patientData.survivalPercent * 0.9f); //decrease survival rate
+                    if (currentPatient.patientData.survivalPercent < 10)
+                        currentPatient.patientData.survivalPercent = 10; //Prevent it from reaching 0%
+                }
+            }
+            else if(currentPatient.scheduled && currentPatient.locked)
             {
                 currentPatient.treatedThisWeek = false;
             }

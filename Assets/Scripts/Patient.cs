@@ -89,7 +89,13 @@ public class Patient : MonoBehaviour
         patientData.condition = condition;
         patientData.survivalPercent = Random.Range(25, 101);
         patientData.funds = Random.Range(10, 51);
-        patientData.treatmentLength = Random.Range(1, 4);
+        float rand = Random.value;
+        if (rand < 0.6f)
+            patientData.treatmentLength = 1; //60% chance
+        else if (rand < 0.9f)
+            patientData.treatmentLength = 2; //30%
+        else
+            patientData.treatmentLength = 3; //10%
     }
 
     public void Clicked(PointerEventData eventData)
