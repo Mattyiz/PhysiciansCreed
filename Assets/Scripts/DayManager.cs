@@ -148,7 +148,7 @@ public class DayManager : MonoBehaviour
     public void GameOver()
     {
         // If we run out of time we should change this to just going back to the main menu
-        SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void ChangeGameState(bool activateGameState)
